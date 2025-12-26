@@ -3,23 +3,22 @@ using UnityEngine;
 
 public class GoldUI : MonoBehaviour
 {
-    public PlayerData playerData;
+    public UserData userData;
     public TMP_Text goldText;
 
     void OnEnable()
     {
-        playerData.OnGoldChanged += UpdateUI;
+        userData.OnGoldChanged += UpdateUI;
         UpdateUI();
     }
 
     void OnDisable()
     {
-        playerData.OnGoldChanged -= UpdateUI;
+        userData.OnGoldChanged -= UpdateUI;
     }
 
     void UpdateUI()
     {
-        goldText.text = $"Gold: {playerData.gold}";
+        goldText.text = $"Gold: {userData.gold}";
     }
-
 }

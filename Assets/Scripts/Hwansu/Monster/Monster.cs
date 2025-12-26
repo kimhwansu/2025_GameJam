@@ -3,7 +3,7 @@ using System;
 
 public class Monster : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 10;
+    [SerializeField] private int maxHealth = 10;   //최대 체력
     [SerializeField] private int currentHealth;
 
     [Header("이동 설정")]
@@ -17,10 +17,13 @@ public class Monster : MonoBehaviour
     public event Action OnMonsterDeath;
 
     private Transform playerTransform;
-    private bool isChasing = false;
+    private bool isWaiting = false;
+    private Vector2 waitPosition;
+    private MonsterSpawner spawner;
 
-    private void Start()
+    public void Initialize(MonsterSpawner monsterSpawner)
     {
+        spawner = monsterSpawner;
         currentHealth = maxHealth;
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -30,8 +33,36 @@ public class Monster : MonoBehaviour
 
     private void Update()
     {
-        if (playerTransform != null)
+        if (isWaiting)
+        {
+            MoveToWaitPosition();
+        }
+        else if (playerTransform != null)
+        {
             ChasePlayer();
+        }
+    }
+
+    public void SetWaitMode(bool wait, Vector2 position)
+    {
+        isWaiting = wait;
+        waitPosition = position;
+    }
+
+    private void MoveToWaitPosition()
+    {
+        float distance = Vector2.Distance(transform.position, waitPosition);
+
+        // 대기 위치에 거의 도착하면 멈춤
+        if (distance > 0.1f)
+        {
+            Vector2 direction = (waitPosition - (Vector2)transform.position).normalized;
+            transform.position = Vector2.MoveTowards(transform.position, waitPosition, moveSpeed * Time.deltaTime);
+
+            // 회전
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
     }
 
     private void ChasePlayer()
@@ -40,18 +71,11 @@ public class Monster : MonoBehaviour
 
         if (distance <= detectionRange && distance > minDistance)
         {
-            isChasing = true;
-
             Vector2 direction = (playerTransform.position - transform.position).normalized;
             transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
 
-            // 2D 회전 (Sprite가 오른쪽을 바라본 상태라면 Z축 회전)
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, angle);
-        }
-        else
-        {
-            isChasing = false;
         }
     }
 
@@ -69,8 +93,10 @@ public class Monster : MonoBehaviour
         if (GoldManager.Instance != null)
             GoldManager.Instance.AddGold(goldReward);
 
-        OnMonsterDeath?.Invoke();
+        if (spawner != null)
+            spawner.OnMonsterDeath(this);
 
+        OnMonsterDeath?.Invoke();
         Destroy(gameObject);
     }
 }

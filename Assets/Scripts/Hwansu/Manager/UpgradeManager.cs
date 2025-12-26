@@ -9,15 +9,26 @@ public class UpgradeManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
     }
 
     public void TryUpgrade()
     {
+        // 골드 사용 시도
         if (!GoldManager.Instance.UseGold(upgradeCost))
+        {
+            Debug.Log("골드 부족");
             return;
+        }
 
+        // 플레이어 공격력 증가
         CharacterStats.Instance.UpgradeStat(StatType.Attack, 1);
-    }
 
+        // 게이지바 1 증가
+        if (attackBar != null)
+            attackBar.Increase();
+    }
 }

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e92ffdd9c5f63e3469133ba29ec972dc, type: 3}
   m_Name: User Data
   m_EditorClassIdentifier: 
-  gold: 1000
+  gold: 100000

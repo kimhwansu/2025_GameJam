@@ -1,24 +1,18 @@
-using TMPro;
 using UnityEngine;
+using TMPro;
 
 public class GoldUI : MonoBehaviour
 {
-    public UserData userData;
     public TMP_Text goldText;
 
-    void OnEnable()
+    void Start()
     {
-        userData.OnGoldChanged += UpdateUI;
-        UpdateUI();
+        UpdateGoldText();
+        GoldManager.Instance.OnGoldChanged += UpdateGoldText;
     }
 
-    void OnDisable()
+    void UpdateGoldText()
     {
-        userData.OnGoldChanged -= UpdateUI;
-    }
-
-    void UpdateUI()
-    {
-        goldText.text = $"Gold: {userData.gold}";
+        goldText.text = GoldManager.Instance.Gold.ToString();
     }
 }

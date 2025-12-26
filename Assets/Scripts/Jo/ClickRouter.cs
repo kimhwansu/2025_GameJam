@@ -124,32 +124,44 @@ public class InputRouter2D : MonoBehaviour
         if (hits == null || hits.Length == 0) return null;
 
         Collider2D best = null;
-        int bestLayerValue = int.MinValue;
         int bestSortingOrder = int.MinValue;
+        int bestDepth = -1;
 
         foreach (var h in hits)
         {
             var col = h.collider;
             if (col == null) continue;
 
-            // ✅ "부모의 스프라이트" 기준
+            // "부모의 스프라이트" 기준으로 sortingOrder 가져오기
             var sr = col.GetComponentInParent<SpriteRenderer>(true);
             if (sr == null) continue;
 
-            int layerValue = SortingLayer.GetLayerValueFromID(sr.sortingLayerID);
             int sortingOrder = sr.sortingOrder;
+            int depth = GetTransformDepth(col.transform);
 
-            // 1순위: Sorting Layer 비교
-            // 2순위: 같은 Sorting Layer 내에서 sortingOrder 비교
-            if (layerValue > bestLayerValue || 
-                (layerValue == bestLayerValue && sortingOrder > bestSortingOrder))
+            // 1순위: sortingOrder 비교 (높을수록 위)
+            // 2순위: sortingOrder가 같으면 depth가 깊은 자식 우선
+            if (sortingOrder > bestSortingOrder || 
+                (sortingOrder == bestSortingOrder && depth > bestDepth))
             {
-                bestLayerValue = layerValue;
                 bestSortingOrder = sortingOrder;
+                bestDepth = depth;
                 best = col;
             }
         }
 
         return best;
+    }
+    
+    // Transform의 계층 깊이 계산 (자식일수록 depth가 큼)
+    private int GetTransformDepth(Transform t)
+    {
+        int depth = 0;
+        while (t.parent != null)
+        {
+            depth++;
+            t = t.parent;
+        }
+        return depth;
     }
 }

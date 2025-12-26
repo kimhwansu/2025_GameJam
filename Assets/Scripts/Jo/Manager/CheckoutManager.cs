@@ -44,20 +44,22 @@ public class CheckoutManager : Singleton<CheckoutManager>
         SpawnGoodsRandom();
         checkoutUi.ClearList();
         checkoutUi.SetTotal(0);
+        
+        // 시간 제한 시작
+        if (TimeManager.Instance != null)
+        {
+            TimeManager.Instance.StartTimer();
+        }
     }
     
-    /// <summary>
     /// 드래그 시작 시 호출하여 새로운 최대 sortingOrder를 반환
-    /// </summary>
     public int GetNextSortingOrder()
     {
         currentMaxSortingOrder++;
         return currentMaxSortingOrder;
     }
     
-    /// <summary>
-    /// 스폰포인트들을 지정된 범위 내의 랜덤 위치로 이동
-    /// </summary>
+    /// 스폰 포인트들을 지정된 범위 내의 랜덤 위치로 이동
     private void RandomizeSpawnPoints()
     {
         foreach (var spawnPoint in spawnPoints)
@@ -134,25 +136,20 @@ public class CheckoutManager : Singleton<CheckoutManager>
         checkoutUi.SetTotal(total);
     }
 
-    /// <summary>
     /// 결제 버튼 클릭 시 호출되는 메서드
-    /// </summary>
     private void OnCheckoutButtonClicked()
     {
         // 모든 아이템이 올바르게 스캔되었는지 확인
         bool isValid = checkoutUi.ValidateAllItemsScanned(spawnedItems);
         
         // 결과 텍스트 표시
-        checkoutUi.SetResult(isValid);
         
         if (isValid)
         {
-            Debug.Log("검증 성공: 모든 아이템이 올바르게 스캔되었습니다.");
             FinishCheckout(true);
         }
         else
         {
-            Debug.LogWarning("검증 실패: 모든 아이템이 올바른 개수로 스캔되지 않았습니다.");
             // 검증 실패 시 처리 (예: 경고 메시지 표시 등)
             FinishCheckout(false);
         }
@@ -160,6 +157,15 @@ public class CheckoutManager : Singleton<CheckoutManager>
 
     public void FinishCheckout(bool isSuccess)
     {
+        // 문구 출력
+        checkoutUi.SetResult(isSuccess);
+        
+        // 타이머 중지
+        if (TimeManager.Instance != null)
+        {
+            TimeManager.Instance.StopTimer();
+        }
+        
         if (isSuccess)
         {
             playerMoney += total;

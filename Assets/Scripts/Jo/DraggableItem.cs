@@ -8,16 +8,21 @@ public class DraggableItem : MonoBehaviour, IDraggable, IClickable
     [SerializeField] private float lockedZ = 0f;            // 고정할 Z
     [SerializeField] private bool snapToCursor = false;     // true면 클릭 지점 무시하고 커서 중앙으로 붙음
 
+    [Header("Move Area")]
+    [SerializeField] private bool clampByItemBounds = true; // 아이템 크기까지 고려해 안쪽으로 제한
+
     private Camera cam;
     private Vector3 grabOffsetWorld; // 클릭 지점과 오브젝트 위치 차이
     private bool isDragging;
 
     private SpriteRenderer[] renderers;
+    private Collider2D myCol; // 아이템의 콜라이더 (크기 계산용)
 
     void Awake()
     {
         cam = Camera.main;
         renderers = GetComponentsInChildren<SpriteRenderer>(true);
+        myCol = GetComponent<Collider2D>(); // 본체 콜라이더
     }
 
     // (선택) 클릭 시 어떤 피드백이 필요하면 여기서 처리 가능
@@ -56,6 +61,9 @@ public class DraggableItem : MonoBehaviour, IDraggable, IClickable
         if (useZLock)
             next.z = lockedZ;
 
+        // MoveAreaManager의 moveArea로 범위 제한
+        next = ClampToArea(next);
+
         transform.position = next;
     }
 
@@ -86,5 +94,33 @@ public class DraggableItem : MonoBehaviour, IDraggable, IClickable
             if (sr != null)
                 sr.sortingOrder = newOrder;
         }
+    }
+
+    /// <summary>
+    /// MoveAreaManager의 moveArea 범위 내로 위치 제한
+    /// </summary>
+    private Vector3 ClampToArea(Vector3 pos)
+    {
+        // MoveAreaManager가 없으면 제한 없이 반환
+        if (MoveAreaManager.Instance == null) return pos;
+        
+        Collider2D moveArea = MoveAreaManager.Instance.GetMoveArea();
+        if (moveArea == null) return pos;
+
+        Bounds area = moveArea.bounds;
+
+        // 아이템 크기 고려: 아이템이 경계를 넘지 않게 안쪽으로 제한
+        float padX = 0f, padY = 0f;
+        if (clampByItemBounds && myCol != null)
+        {
+            Bounds b = myCol.bounds;
+            padX = b.extents.x;
+            padY = b.extents.y;
+        }
+
+        float x = Mathf.Clamp(pos.x, area.min.x + padX, area.max.x - padX);
+        float y = Mathf.Clamp(pos.y, area.min.y + padY, area.max.y - padY);
+
+        return new Vector3(x, y, pos.z);
     }
 }

@@ -209,8 +209,9 @@ GameObject:
   - component: {fileID: 510123348}
   - component: {fileID: 510123350}
   - component: {fileID: 510123349}
+  - component: {fileID: 510123351}
   m_Layer: 5
-  m_Name: Player
+  m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -273,6 +274,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 510123347}
   m_CullTransparentMesh: 1
+--- !u!114 &510123351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510123347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5be1ca16f850a44aad50be92e5dbe7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  currentHP: 0
 --- !u!1 &605834649
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,7 +392,7 @@ GameObject:
   - component: {fileID: 789895862}
   - component: {fileID: 789895865}
   m_Layer: 5
-  m_Name: UpgradeButton
+  m_Name: AttackUpgradeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1426,6 +1441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d617b3857e22e6e44ae00ba2da4e06c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackBar: {fileID: 1520009981}
 --- !u!4 &1986725326
 Transform:
   m_ObjectHideFlags: 0

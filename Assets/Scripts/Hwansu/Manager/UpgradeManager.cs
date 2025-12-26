@@ -4,18 +4,13 @@ public class UpgradeManager : MonoBehaviour
 {
     public static UpgradeManager Instance;
 
-    [SerializeField] private AttackBar attackBar;
-    private int upgradeCost = 100;
-
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
 
-    public void TryUpgrade()
+    public void TryUpgrade(StatType statType, int upgradeCost, StatBar statBar)
     {
         // 골드 사용 시도
         if (!GoldManager.Instance.UseGold(upgradeCost))
@@ -24,11 +19,11 @@ public class UpgradeManager : MonoBehaviour
             return;
         }
 
-        // 플레이어 공격력 증가
-        CharacterStats.Instance.UpgradeStat(StatType.Attack, 1);
+        // 플레이어 스텟 증가
+        CharacterStats.Instance.UpgradeStat(statType, 1);
 
-        // 게이지바 1 증가
-        if (attackBar != null)
-            attackBar.Increase();
+        // 관련 게이지바 증가
+        if (statBar != null)
+            statBar.Increase();
     }
 }

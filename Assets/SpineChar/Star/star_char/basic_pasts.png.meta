@@ -1,0 +1,1599 @@
+fileFormatVersion: 2
+guid: f7b1c7b665dcfc34e93db0cb916a5139
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4719041985194570266
+    second: basic_pasts_0
+  - first:
+      213: -616931604780685477
+    second: basic_pasts_1
+  - first:
+      213: -5798672219815190572
+    second: basic_pasts_2
+  - first:
+      213: -7000869315468027022
+    second: basic_pasts_3
+  - first:
+      213: 3054221904264922797
+    second: basic_pasts_4
+  - first:
+      213: 5502722379596754970
+    second: basic_pasts_5
+  - first:
+      213: 5392427531776999110
+    second: basic_pasts_6
+  - first:
+      213: -3305619404519776455
+    second: basic_pasts_7
+  - first:
+      213: 3831124554220524937
+    second: basic_pasts_8
+  - first:
+      213: -7495048831180914381
+    second: basic_pasts_9
+  - first:
+      213: 923696161327888595
+    second: basic_pasts_10
+  - first:
+      213: -1878892184667159036
+    second: basic_pasts_11
+  - first:
+      213: -4632593950880020424
+    second: basic_pasts_12
+  - first:
+      213: -5028681593932433717
+    second: basic_pasts_13
+  - first:
+      213: -7602184115022988546
+    second: basic_pasts_14
+  - first:
+      213: 5863457072840394326
+    second: basic_pasts_15
+  - first:
+      213: 5250735842479491479
+    second: basic_pasts_16
+  - first:
+      213: 4837972979252144337
+    second: basic_pasts_17
+  - first:
+      213: -1605706706752524190
+    second: basic_pasts_18
+  - first:
+      213: 1645327343671166962
+    second: basic_pasts_19
+  - first:
+      213: -2039699796584649872
+    second: basic_pasts_20
+  - first:
+      213: -5657446465777843107
+    second: basic_pasts_21
+  - first:
+      213: -5234110157046750763
+    second: basic_pasts_22
+  - first:
+      213: 145034159651092380
+    second: basic_pasts_23
+  - first:
+      213: -976043404356720117
+    second: basic_pasts_24
+  - first:
+      213: 7738765502696319861
+    second: basic_pasts_25
+  - first:
+      213: 1941618767566323275
+    second: basic_pasts_26
+  - first:
+      213: -1487013917407619251
+    second: basic_pasts_27
+  - first:
+      213: -3282278216795134479
+    second: basic_pasts_28
+  - first:
+      213: 611957393619909319
+    second: basic_pasts_29
+  - first:
+      213: 8753161825653256003
+    second: basic_pasts_30
+  - first:
+      213: 8943440533359738538
+    second: basic_pasts_31
+  - first:
+      213: -3920890367451332094
+    second: basic_pasts_32
+  - first:
+      213: 8800809874241249949
+    second: basic_pasts_33
+  - first:
+      213: 3419101583612978925
+    second: basic_pasts_34
+  - first:
+      213: 4049507333194601177
+    second: basic_pasts_35
+  - first:
+      213: -5757633373596203809
+    second: basic_pasts_36
+  - first:
+      213: -220683639840385400
+    second: basic_pasts_37
+  - first:
+      213: 4214612534284522521
+    second: basic_pasts_38
+  - first:
+      213: -4044682695148868385
+    second: basic_pasts_39
+  - first:
+      213: 4130811468828929241
+    second: basic_pasts_40
+  - first:
+      213: -8447474021360493546
+    second: basic_pasts_41
+  - first:
+      213: 5571587044967346179
+    second: basic_pasts_42
+  - first:
+      213: 2845844176743818870
+    second: basic_pasts_43
+  - first:
+      213: 6466551384795120783
+    second: basic_pasts_44
+  - first:
+      213: 7051905569009923028
+    second: basic_pasts_45
+  - first:
+      213: 6072069490496316848
+    second: basic_pasts_46
+  - first:
+      213: -212577060846672460
+    second: basic_pasts_47
+  - first:
+      213: -2232146140380635881
+    second: basic_pasts_48
+  - first:
+      213: -9147503875501646429
+    second: basic_pasts_49
+  - first:
+      213: -632317458413893790
+    second: basic_pasts_50
+  - first:
+      213: -406737890187704811
+    second: basic_pasts_51
+  - first:
+      213: -6005196027208748107
+    second: basic_pasts_52
+  - first:
+      213: -5710942103207403075
+    second: basic_pasts_53
+  - first:
+      213: 8445265850259811386
+    second: basic_pasts_54
+  - first:
+      213: 5366219734745854223
+    second: basic_pasts_55
+  - first:
+      213: -4939017489515451293
+    second: basic_pasts_56
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 0
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 0
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: basic_pasts_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1333
+        width: 327
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a123da7dea76d7140800000000000000
+      internalID: 4719041985194570266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_1
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 1333
+        width: 165
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b57e55e59f73077f0800000000000000
+      internalID: -616931604780685477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_2
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 1271
+        width: 241
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4df5df8b65af68fa0800000000000000
+      internalID: -5798672219815190572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_3
+      rect:
+        serializedVersion: 2
+        x: 752
+        y: 1271
+        width: 150
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27b9894237ae7de90800000000000000
+      internalID: -7000869315468027022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_4
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 1262
+        width: 88
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da68de4d3a6c26a20800000000000000
+      internalID: 3054221904264922797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_5
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 1340
+        width: 74
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a10f47d79d89d5c40800000000000000
+      internalID: 5502722379596754970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_6
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 1386
+        width: 33
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ceba941540c5da40800000000000000
+      internalID: 5392427531776999110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_7
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 1338
+        width: 58
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93fd5fe5aa41022d0800000000000000
+      internalID: -3305619404519776455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_8
+      rect:
+        serializedVersion: 2
+        x: 1178
+        y: 1387
+        width: 40
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9855790eb73ea2530800000000000000
+      internalID: 3831124554220524937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_9
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 1391
+        width: 28
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 331414b6ccc3cf790800000000000000
+      internalID: -7495048831180914381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_10
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 1305
+        width: 160
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d83758c3c0a1dc00800000000000000
+      internalID: 923696161327888595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_11
+      rect:
+        serializedVersion: 2
+        x: 1494
+        y: 1305
+        width: 88
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40608a94385dce5e0800000000000000
+      internalID: -1878892184667159036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_12
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 1313
+        width: 145
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8384c21a858b5bfb0800000000000000
+      internalID: -4632593950880020424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_13
+      rect:
+        serializedVersion: 2
+        x: 1158
+        y: 1339
+        width: 74
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc6bc11cbb8863ab0800000000000000
+      internalID: -5028681593932433717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_14
+      rect:
+        serializedVersion: 2
+        x: 1269
+        y: 1338
+        width: 61
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efaffe253dd9f7690800000000000000
+      internalID: -7602184115022988546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_15
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 981
+        width: 505
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 656476e442f2f5150800000000000000
+      internalID: 5863457072840394326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_16
+      rect:
+        serializedVersion: 2
+        x: 1068
+        y: 1294
+        width: 32
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 799c66cdd6c5ed840800000000000000
+      internalID: 5250735842479491479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_17
+      rect:
+        serializedVersion: 2
+        x: 1231
+        y: 1305
+        width: 25
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d8234dbacee32340800000000000000
+      internalID: 4837972979252144337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_18
+      rect:
+        serializedVersion: 2
+        x: 1256
+        y: 1305
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 260bd82f14267b9e0800000000000000
+      internalID: -1605706706752524190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_19
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 1161
+        width: 104
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f7c1c2708065d610800000000000000
+      internalID: 1645327343671166962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_20
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 1174
+        width: 359
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07ba22087d781b3e0800000000000000
+      internalID: -2039699796584649872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_21
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 981
+        width: 114
+        height: 279
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d54c58fe966bc71b0800000000000000
+      internalID: -5657446465777843107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_22
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 1230
+        width: 225
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d1e6fd2b84bc57b0800000000000000
+      internalID: -5234110157046750763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_23
+      rect:
+        serializedVersion: 2
+        x: 1221
+        y: 1244
+        width: 200
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c97fc4ebcc3430200800000000000000
+      internalID: 145034159651092380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_24
+      rect:
+        serializedVersion: 2
+        x: 1423
+        y: 1208
+        width: 159
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0a64fde1b56472f0800000000000000
+      internalID: -976043404356720117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_25
+      rect:
+        serializedVersion: 2
+        x: 1690
+        y: 1157
+        width: 68
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57be244193e956b60800000000000000
+      internalID: 7738765502696319861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_26
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 981
+        width: 365
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4eb5026bf302fa10800000000000000
+      internalID: 1941618767566323275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_27
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 1001
+        width: 266
+        height: 228
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d475bdc78b01d5be0800000000000000
+      internalID: -1487013917407619251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_28
+      rect:
+        serializedVersion: 2
+        x: 1262
+        y: 1001
+        width: 158
+        height: 241
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f56ce12a510372d0800000000000000
+      internalID: -3282278216795134479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_29
+      rect:
+        serializedVersion: 2
+        x: 1422
+        y: 998
+        width: 65
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ca7368d10c1e7800800000000000000
+      internalID: 611957393619909319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_30
+      rect:
+        serializedVersion: 2
+        x: 1489
+        y: 998
+        width: 151
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34f629fdd4a797970800000000000000
+      internalID: 8753161825653256003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_31
+      rect:
+        serializedVersion: 2
+        x: 1730
+        y: 1096
+        width: 98
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aaebcbcd7cb7d1c70800000000000000
+      internalID: 8943440533359738538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_32
+      rect:
+        serializedVersion: 2
+        x: 1218
+        y: 1000
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20200dc0cf23699c0800000000000000
+      internalID: -3920890367451332094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_33
+      rect:
+        serializedVersion: 2
+        x: 1642
+        y: 988
+        width: 68
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9266e1b3f1c22a70800000000000000
+      internalID: 8800809874241249949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_34
+      rect:
+        serializedVersion: 2
+        x: 1712
+        y: 994
+        width: 147
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de62a3e66c6137f20800000000000000
+      internalID: 3419101583612978925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_35
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 786
+        width: 369
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d2576ed67db23830800000000000000
+      internalID: 4049507333194601177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_36
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 874
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd44dd3b3f6c810b0800000000000000
+      internalID: -5757633373596203809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_37
+      rect:
+        serializedVersion: 2
+        x: 963
+        y: 861
+        width: 84
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 886d2971669ffecf0800000000000000
+      internalID: -220683639840385400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_38
+      rect:
+        serializedVersion: 2
+        x: 1096
+        y: 835
+        width: 270
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91410fb15cf4d7a30800000000000000
+      internalID: 4214612534284522521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_39
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 835
+        width: 146
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdc6b76b4866ed7c0800000000000000
+      internalID: -4044682695148868385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_40
+      rect:
+        serializedVersion: 2
+        x: 1515
+        y: 833
+        width: 220
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9dc68a91527935930800000000000000
+      internalID: 4130811468828929241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_41
+      rect:
+        serializedVersion: 2
+        x: 1737
+        y: 833
+        width: 95
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61c977b522b84ca80800000000000000
+      internalID: -8447474021360493546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_42
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 555
+        width: 577
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 300727ad5e0425d40800000000000000
+      internalID: 5571587044967346179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_43
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 555
+        width: 138
+        height: 304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 676ede863387e7720800000000000000
+      internalID: 2845844176743818870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_44
+      rect:
+        serializedVersion: 2
+        x: 1096
+        y: 549
+        width: 133
+        height: 284
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f840684293ecdb950800000000000000
+      internalID: 6466551384795120783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_45
+      rect:
+        serializedVersion: 2
+        x: 1292
+        y: 546
+        width: 92
+        height: 269
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d37f6e90c66dd160800000000000000
+      internalID: 7051905569009923028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_46
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 546
+        width: 165
+        height: 282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b52588c703544450800000000000000
+      internalID: 6072069490496316848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_47
+      rect:
+        serializedVersion: 2
+        x: 1553
+        y: 734
+        width: 274
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b566d81a46cc0df0800000000000000
+      internalID: -212577060846672460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_48
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 258
+        width: 395
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71d5ad769e2d501e0800000000000000
+      internalID: -2232146140380635881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_49
+      rect:
+        serializedVersion: 2
+        x: 1042
+        y: 2
+        width: 431
+        height: 542
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ad1737d0b98d0180800000000000000
+      internalID: -9147503875501646429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_50
+      rect:
+        serializedVersion: 2
+        x: 1475
+        y: 477
+        width: 75
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26746f92f9e8937f0800000000000000
+      internalID: -632317458413893790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_51
+      rect:
+        serializedVersion: 2
+        x: 1553
+        y: 477
+        width: 259
+        height: 255
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5168baa3b0afa5af0800000000000000
+      internalID: -406737890187704811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_52
+      rect:
+        serializedVersion: 2
+        x: 1814
+        y: 477
+        width: 52
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b3b2a7b70249aca0800000000000000
+      internalID: -6005196027208748107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_53
+      rect:
+        serializedVersion: 2
+        x: 1475
+        y: 311
+        width: 384
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db1208d3a68aeb0b0800000000000000
+      internalID: -5710942103207403075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_54
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 2
+        width: 609
+        height: 290
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3c297ebb8c933570800000000000000
+      internalID: 8445265850259811386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_55
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 276
+        width: 33
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f01b734da64a87a40800000000000000
+      internalID: 5366219734745854223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_pasts_56
+      rect:
+        serializedVersion: 2
+        x: 1475
+        y: 2
+        width: 390
+        height: 307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36c6df5e2c5157bb0800000000000000
+      internalID: -4939017489515451293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      basic_pasts_0: 4719041985194570266
+      basic_pasts_1: -616931604780685477
+      basic_pasts_10: 923696161327888595
+      basic_pasts_11: -1878892184667159036
+      basic_pasts_12: -4632593950880020424
+      basic_pasts_13: -5028681593932433717
+      basic_pasts_14: -7602184115022988546
+      basic_pasts_15: 5863457072840394326
+      basic_pasts_16: 5250735842479491479
+      basic_pasts_17: 4837972979252144337
+      basic_pasts_18: -1605706706752524190
+      basic_pasts_19: 1645327343671166962
+      basic_pasts_2: -5798672219815190572
+      basic_pasts_20: -2039699796584649872
+      basic_pasts_21: -5657446465777843107
+      basic_pasts_22: -5234110157046750763
+      basic_pasts_23: 145034159651092380
+      basic_pasts_24: -976043404356720117
+      basic_pasts_25: 7738765502696319861
+      basic_pasts_26: 1941618767566323275
+      basic_pasts_27: -1487013917407619251
+      basic_pasts_28: -3282278216795134479
+      basic_pasts_29: 611957393619909319
+      basic_pasts_3: -7000869315468027022
+      basic_pasts_30: 8753161825653256003
+      basic_pasts_31: 8943440533359738538
+      basic_pasts_32: -3920890367451332094
+      basic_pasts_33: 8800809874241249949
+      basic_pasts_34: 3419101583612978925
+      basic_pasts_35: 4049507333194601177
+      basic_pasts_36: -5757633373596203809
+      basic_pasts_37: -220683639840385400
+      basic_pasts_38: 4214612534284522521
+      basic_pasts_39: -4044682695148868385
+      basic_pasts_4: 3054221904264922797
+      basic_pasts_40: 4130811468828929241
+      basic_pasts_41: -8447474021360493546
+      basic_pasts_42: 5571587044967346179
+      basic_pasts_43: 2845844176743818870
+      basic_pasts_44: 6466551384795120783
+      basic_pasts_45: 7051905569009923028
+      basic_pasts_46: 6072069490496316848
+      basic_pasts_47: -212577060846672460
+      basic_pasts_48: -2232146140380635881
+      basic_pasts_49: -9147503875501646429
+      basic_pasts_5: 5502722379596754970
+      basic_pasts_50: -632317458413893790
+      basic_pasts_51: -406737890187704811
+      basic_pasts_52: -6005196027208748107
+      basic_pasts_53: -5710942103207403075
+      basic_pasts_54: 8445265850259811386
+      basic_pasts_55: 5366219734745854223
+      basic_pasts_56: -4939017489515451293
+      basic_pasts_6: 5392427531776999110
+      basic_pasts_7: -3305619404519776455
+      basic_pasts_8: 3831124554220524937
+      basic_pasts_9: -7495048831180914381
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

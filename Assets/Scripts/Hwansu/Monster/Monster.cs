@@ -6,12 +6,12 @@ public class Monster : MonoBehaviour
     [SerializeField] private int maxHealth = 10;
     [SerializeField] private int currentHealth;
 
-    [Header("Movement")]
+    [Header("이동 설정")]
     [SerializeField] private float moveSpeed = 2f;
     [SerializeField] private float minDistance = 1f;
     [SerializeField] private float detectionRange = 10f;
 
-    [Header("Death Effects")]
+    [Header("사망 시 효과")]
     [SerializeField] private int goldReward = 50;
 
     public event Action OnMonsterDeath;

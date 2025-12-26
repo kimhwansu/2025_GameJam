@@ -3,6 +3,10 @@ public enum StatType
     Attack,
     Health,
     Defense,
-    CritRate,
-    AttackSpeed
+    Hit,
+    N_Damage,
+    Speed,
+    Sk_Damage,
+    CriPer,
+    CriAtt
 }

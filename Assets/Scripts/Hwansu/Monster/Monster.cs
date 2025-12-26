@@ -6,76 +6,71 @@ public class Monster : MonoBehaviour
     [SerializeField] private int maxHealth = 10;
     [SerializeField] private int currentHealth;
 
+    [Header("Movement")]
+    [SerializeField] private float moveSpeed = 2f;
+    [SerializeField] private float minDistance = 1f;
+    [SerializeField] private float detectionRange = 10f;
+
     [Header("Death Effects")]
-    //[SerializeField] private GameObject deathEffectPrefab; // 사망 이펙트 프리팹
-    //[SerializeField] private AudioClip deathSound; // 사망 사운드
-    [SerializeField] private int goldReward = 50; // 드롭할 골드
+    [SerializeField] private int goldReward = 50;
 
     public event Action OnMonsterDeath;
 
-    //private AudioSource audioSource;
+    private Transform playerTransform;
+    private bool isChasing = false;
 
     private void Start()
     {
         currentHealth = maxHealth;
 
-        //audioSource = GetComponent<AudioSource>();
-        //if (audioSource == null)
-        //{
-        //    audioSource = gameObject.AddComponent<AudioSource>();
-        //}
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+            playerTransform = player.transform;
+    }
+
+    private void Update()
+    {
+        if (playerTransform != null)
+            ChasePlayer();
+    }
+
+    private void ChasePlayer()
+    {
+        float distance = Vector2.Distance(transform.position, playerTransform.position);
+
+        if (distance <= detectionRange && distance > minDistance)
+        {
+            isChasing = true;
+
+            Vector2 direction = (playerTransform.position - transform.position).normalized;
+            transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
+
+            // 2D 회전 (Sprite가 오른쪽을 바라본 상태라면 Z축 회전)
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
+        else
+        {
+            isChasing = false;
+        }
     }
 
     public void TakeDamage()
     {
-        // 플레이어 공격력 상관없이 무조건 -1 데미지
         currentHealth -= 1;
         currentHealth = Mathf.Max(0, currentHealth);
 
-
         if (currentHealth <= 0)
-        {
             Die();
-        }
     }
 
     private void Die()
     {
-        // 사망 이펙트 재생
-        //PlayDeathEffect();
-
-        // 사망 사운드 재생
-        //PlayDeathSound();
-
-        // 골드 드롭
-        GoldManager.Instance.AddGold(goldReward);
+        if (GoldManager.Instance != null)
+            GoldManager.Instance.AddGold(goldReward);
 
         OnMonsterDeath?.Invoke();
 
-        // 몬스터 리셋 (위치 고정이므로 파괴하지 않고 체력만 회복)
-        Invoke(nameof(Respawn), 0.5f);
         Destroy(gameObject);
     }
-
-    private void Respawn()
-    {
-        currentHealth = maxHealth;
-    }
-
-    //private void PlayDeathEffect()
-    //{
-    //    if (deathEffectPrefab != null)
-    //    {
-    //        GameObject effect = Instantiate(deathEffectPrefab, transform.position, Quaternion.identity);
-    //        Destroy(effect, 2f);
-    //    }
-    //}
-
-    //private void PlayDeathSound()
-    //{
-    //    if (deathSound != null && audioSource != null)
-    //    {
-    //        audioSource.PlayOneShot(deathSound);
-    //    }
-    //}
 }

@@ -2,32 +2,74 @@ using UnityEngine;
 
 public class CharacterAttack : MonoBehaviour
 {
-    [SerializeField] private Monster currentTarget;
-    [SerializeField] private float attackInterval = 1.5f; // 1.5초마다 공격
+    [SerializeField] private float attackRange = 3f;
+    [SerializeField] private float attackInterval = 1.5f;
+    [SerializeField] private LayerMask monsterLayer;
 
     private float attackTimer = 0f;
+    private Monster currentTarget;
 
     private void Update()
     {
+        FindTargetInRange();
+
         if (currentTarget != null)
         {
-            attackTimer += Time.deltaTime;
+            float distance = Vector2.Distance(transform.position, currentTarget.transform.position);
 
-            if (attackTimer >= attackInterval)
+            if (distance <= attackRange)
             {
-                Attack();
+                attackTimer += Time.deltaTime;
+                if (attackTimer >= attackInterval)
+                {
+                    Attack();
+                    attackTimer = 0f;
+                }
+            }
+            else
+            {
+                currentTarget = null;
                 attackTimer = 0f;
             }
         }
     }
 
-    public void Attack()
+    private void FindTargetInRange()
+    {
+        if (currentTarget != null) return;
+
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, attackRange, monsterLayer);
+
+        if (hitColliders.Length > 0)
+        {
+            float closestDistance = Mathf.Infinity;
+            Monster closestMonster = null;
+
+            foreach (Collider2D collider in hitColliders)
+            {
+                Monster monster = collider.GetComponent<Monster>();
+                if (monster != null)
+                {
+                    float distance = Vector2.Distance(transform.position, collider.transform.position);
+                    if (distance < closestDistance)
+                    {
+                        closestDistance = distance;
+                        closestMonster = monster;
+                    }
+                }
+            }
+
+            if (closestMonster != null)
+            {
+                SetTarget(closestMonster);
+            }
+        }
+    }
+
+    private void Attack()
     {
         if (currentTarget != null)
-        {
-            // 플레이어 공격력 상관없이 몬스터는 무조건 -1 데미지를 받음
             currentTarget.TakeDamage();
-        }
     }
 
     public void SetTarget(Monster target)

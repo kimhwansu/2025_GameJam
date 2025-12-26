@@ -7,6 +7,10 @@ public class CheckoutManager : Singleton<CheckoutManager>
     [SerializeField] private Transform[] spawnPoints = new Transform[6]; // 6개의 스폰 위치
     [SerializeField] private List<GameObject> itemPrefabs;
     [SerializeField] private int spawnCount = 3; // 랜덤으로 선택할 위치 개수
+    
+    [Header("Spawn Area")]
+    [SerializeField] private Vector2 spawnAreaCenter = Vector2.zero; // 스폰 영역 중심
+    [SerializeField] private Vector2 spawnAreaSize = new Vector2(10f, 10f); // 스폰 영역 크기 (너비, 높이)
 
     [Header("UI")]
     [SerializeField] private CheckoutUI checkoutUi;
@@ -20,6 +24,7 @@ public class CheckoutManager : Singleton<CheckoutManager>
 
     private readonly List<ScannableItem> spawnedItems = new();
     private int total;   // 현재 총합
+    private int currentMaxSortingOrder = 0; // 현재 가장 높은 sortingOrder
  
     private void Start()
     {
@@ -35,9 +40,45 @@ public class CheckoutManager : Singleton<CheckoutManager>
     {
         Debug.Log("CheckoutManager: StartCustomer 호출됨");
         ClearRound();
+        RandomizeSpawnPoints(); // 스폰포인트를 랜덤 위치로 이동
         SpawnGoodsRandom();
         checkoutUi.ClearList();
         checkoutUi.SetTotal(0);
+    }
+    
+    /// <summary>
+    /// 드래그 시작 시 호출하여 새로운 최대 sortingOrder를 반환
+    /// </summary>
+    public int GetNextSortingOrder()
+    {
+        currentMaxSortingOrder++;
+        return currentMaxSortingOrder;
+    }
+    
+    /// <summary>
+    /// 스폰포인트들을 지정된 범위 내의 랜덤 위치로 이동
+    /// </summary>
+    private void RandomizeSpawnPoints()
+    {
+        foreach (var spawnPoint in spawnPoints)
+        {
+            if (spawnPoint != null)
+            {
+                // 네모 모양 범위 내의 랜덤 위치 계산
+                float randomX = Random.Range(
+                    spawnAreaCenter.x - spawnAreaSize.x / 2f,
+                    spawnAreaCenter.x + spawnAreaSize.x / 2f
+                );
+                float randomY = Random.Range(
+                    spawnAreaCenter.y - spawnAreaSize.y / 2f,
+                    spawnAreaCenter.y + spawnAreaSize.y / 2f
+                );
+                
+                // Z 좌표는 기존 값 유지
+                Vector3 newPosition = new Vector3(randomX, randomY, spawnPoint.position.z);
+                spawnPoint.position = newPosition;
+            }
+        }
     }
 
     private void SpawnGoodsRandom()
@@ -136,6 +177,9 @@ public class CheckoutManager : Singleton<CheckoutManager>
     private void ClearRound()
     {
         total = 0;
+        
+        // sortingOrder 초기화
+        currentMaxSortingOrder = 0;
 
         // 스폰된 물건 제거
         for (int i = 0; i < spawnedItems.Count; i++)
@@ -146,4 +190,19 @@ public class CheckoutManager : Singleton<CheckoutManager>
         }
         spawnedItems.Clear();
     }
+    
+    // 에디터에서 스폰 영역을 시각적으로 표시하는 Gizmo
+    private void OnDrawGizmos()
+    {
+        // 스폰 영역 중심점 표시
+        Gizmos.color = Color.yellow;
+        Vector3 center = new Vector3(spawnAreaCenter.x, spawnAreaCenter.y, 0);
+        Gizmos.DrawWireSphere(center, 0.2f);
+        
+        // 스폰 영역 사각형 표시
+        Gizmos.color = Color.green;
+        Vector3 size = new Vector3(spawnAreaSize.x, spawnAreaSize.y, 0);
+        Gizmos.DrawWireCube(center, size);
+    }
+
 }

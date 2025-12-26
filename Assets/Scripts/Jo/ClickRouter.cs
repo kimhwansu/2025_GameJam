@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InputRouter2D : MonoBehaviour
+public class ClickRouter : MonoBehaviour
 {
     [SerializeField] private LayerMask clickableMask;
 
@@ -11,7 +11,7 @@ public class InputRouter2D : MonoBehaviour
 
     private Vector2 lastWorldPos;
     private bool isPointerDown;
-    private bool hasDragged; // 실제로 드래그가 발생했는지 여부
+    private bool hasDragged;    // 실제로 드래그가 발생했는지 여부
 
     private void Awake()
     {

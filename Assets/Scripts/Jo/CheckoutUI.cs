@@ -9,7 +9,6 @@ public class CheckoutUI : MonoBehaviour
     [SerializeField] private Text totalText;
     [SerializeField] private Text moneyText;
     [SerializeField] private Button checkoutButton; // 결제 버튼
-    [SerializeField] private Text resultText; // 검증 결과 텍스트
 
     private readonly List<CheckoutUILine> lineList = new();
 
@@ -79,27 +78,19 @@ public class CheckoutUI : MonoBehaviour
     public void SetTotal(int total) => totalText.text = $"합계: {total:N0}원";
     public void SetPlayerMoney(int money) => moneyText.text = $"보유: {money:N0}원";
     
-    /// <summary>
-    /// 검증 결과를 텍스트로 표시
-    /// </summary>
-    /// <param name="isSuccess">성공 여부</param>
+    // 검증 결과 표시 (ResultTextUIManager로 위임)
     public void SetResult(bool isSuccess)
     {
-        if (resultText != null)
+        if (ResultTextUIManager.Instance != null)
         {
-            resultText.text = isSuccess ? "성공!" : "실패! (패널티 1000원)";
+            ResultTextUIManager.Instance.ShowResult(isSuccess);
         }
     }
     
-    /// <summary>
-    /// 결과 텍스트 초기화
-    /// </summary>
+    // 결과 텍스트 초기화 (더 이상 필요 없음, ResultTextUIManager가 관리)
     public void ClearResult()
     {
-        if (resultText != null)
-        {
-            resultText.text = "";
-        }
+        // ResultTextUIManager가 자동으로 처리
     }
 
     /// <summary>

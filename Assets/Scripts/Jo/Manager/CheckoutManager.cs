@@ -3,28 +3,19 @@ using UnityEngine;
 
 public class CheckoutManager : Singleton<CheckoutManager>
 {
-    [Header("Spawn")]
-    [SerializeField] private Transform[] spawnPoints = new Transform[6]; // 6개의 스폰 위치
-    [SerializeField] private List<GameObject> itemPrefabs;
-    [SerializeField] private int spawnCount = 3; // 랜덤으로 선택할 위치 개수
-    
-    [Header("Spawn Area")]
-    [SerializeField] private Vector2 spawnAreaCenter = Vector2.zero; // 스폰 영역 중심
-    [SerializeField] private Vector2 spawnAreaSize = new Vector2(10f, 10f); // 스폰 영역 크기 (너비, 높이)
-
     [Header("UI")]
     [SerializeField] private CheckoutUI checkoutUi;
 
     [Header("Money")]
     public int playerMoney;
+    [SerializeField] private int partTimeMoney = 2000;
     [SerializeField] private int penaltyMoney = 1000;
 
     [Header("GoalMoney")] // 목표 금액
     [SerializeField] private int goalMoney; 
 
-    private readonly List<ScannableItem> spawnedItems = new();
+    private List<ScannableItem> spawnedItems = new();
     private int total;   // 현재 총합
-    private int currentMaxSortingOrder = 0; // 현재 가장 높은 sortingOrder
  
     private void Start()
     {
@@ -33,17 +24,49 @@ public class CheckoutManager : Singleton<CheckoutManager>
             checkoutUi.SetCheckoutButton(OnCheckoutButtonClicked);
         
         StartCustomer();
-        checkoutUi.ClearResult();
     }
 
     public void StartCustomer()
     {
         Debug.Log("CheckoutManager: StartCustomer 호출됨");
-        ClearRound();
-        RandomizeSpawnPoints(); // 스폰포인트를 랜덤 위치로 이동
-        SpawnGoodsRandom();
-        checkoutUi.ClearList();
-        checkoutUi.SetTotal(0);
+        
+        // CustomerManager를 통한 손님 이미지 변경
+        if (CustomerManager.Instance != null)
+        {
+            CustomerManager.Instance.ChangeCustomer();
+            
+            // 5명마다 휴식 시간 체크
+            if (CustomerManager.Instance.NeedsRest())
+            {
+                StartRestTime();
+                return; // 휴식 시간이면 여기서 종료
+            }
+        }
+        
+        // 일반 손님 처리
+        StartCustomerRound();
+    }
+    
+    // 일반 손님 라운드 시작
+    private void StartCustomerRound()
+    {
+        ClearRound(); // 이전 라운드 정리
+        
+        // 손님 이미지 활성화
+        if (CustomerManager.Instance != null)
+        {
+            CustomerManager.Instance.ShowCustomerImage();
+        }
+        
+        // ItemManager를 통한 아이템 스폰
+        if (ItemManager.Instance != null)
+        {
+            ItemManager.Instance.RandomizeSpawnPoints(); // 스폰포인트를 랜덤 위치로 이동
+            spawnedItems = ItemManager.Instance.SpawnItems(); // 랜덤 아이템 생성
+        }
+        
+        checkoutUi.ClearList(); // UI 리스트 초기화
+        checkoutUi.SetTotal(0); // 총합 초기화
         
         // 시간 제한 시작
         if (TimeManager.Instance != null)
@@ -52,72 +75,29 @@ public class CheckoutManager : Singleton<CheckoutManager>
         }
     }
     
-    /// 드래그 시작 시 호출하여 새로운 최대 sortingOrder를 반환
-    public int GetNextSortingOrder()
+    // 휴식 시간 시작
+    private void StartRestTime()
     {
-        currentMaxSortingOrder++;
-        return currentMaxSortingOrder;
-    }
-    
-    /// 스폰 포인트들을 지정된 범위 내의 랜덤 위치로 이동
-    private void RandomizeSpawnPoints()
-    {
-        foreach (var spawnPoint in spawnPoints)
+        Debug.Log($"휴식 시간 시작! (손님 {CustomerManager.Instance.GetCustomerCount()}명 처리 완료)");
+        
+        // 이전 라운드 정리 (아이템 제거)
+        ClearRound();
+        
+        // 손님 이미지 비활성화
+        if (CustomerManager.Instance != null)
         {
-            if (spawnPoint != null)
-            {
-                // 네모 모양 범위 내의 랜덤 위치 계산
-                float randomX = Random.Range(
-                    spawnAreaCenter.x - spawnAreaSize.x / 2f,
-                    spawnAreaCenter.x + spawnAreaSize.x / 2f
-                );
-                float randomY = Random.Range(
-                    spawnAreaCenter.y - spawnAreaSize.y / 2f,
-                    spawnAreaCenter.y + spawnAreaSize.y / 2f
-                );
-                
-                // Z 좌표는 기존 값 유지
-                Vector3 newPosition = new Vector3(randomX, randomY, spawnPoint.position.z);
-                spawnPoint.position = newPosition;
-            }
+            CustomerManager.Instance.HideCustomerImage();
         }
-    }
-
-    private void SpawnGoodsRandom()
-    {
-
-        // 6개 위치 리스트에 새로 복사
-        List<int> availableIndices = new List<int>();
-        for (int i = 0; i < spawnPoints.Length; i++)
+        
+        // UI 초기화
+        checkoutUi.ClearList();
+        checkoutUi.SetTotal(0);
+        
+        // 휴식 시간 타이머 시작
+        if (TimeManager.Instance != null && CustomerManager.Instance != null)
         {
-            if (spawnPoints[i] != null)
-                availableIndices.Add(i);
+            TimeManager.Instance.StartRestTimer(CustomerManager.Instance.GetRestDuration());
         }
-
-        // 랜덤으로 3개 선택 (또는 사용 가능한 개수만큼)
-        int countToSpawn = Mathf.Min(spawnCount, availableIndices.Count);
-        List<int> selectedIndices = new List<int>();
-
-        // selectedIndices에 랜덤으로 뽑은 3개의 아이템 추가
-        for (int i = 0; i < countToSpawn; i++)
-        {
-            int randomIndex = Random.Range(0, availableIndices.Count);
-            selectedIndices.Add(availableIndices[randomIndex]);
-            availableIndices.RemoveAt(randomIndex);
-        }
-
-        // 선택된 위치에 아이템 생성 (월드 좌표 기준)
-        foreach (int index in selectedIndices)
-        {
-            var prefab = itemPrefabs[Random.Range(0, itemPrefabs.Count)];
-
-            var go = Instantiate(prefab, spawnPoints[index].position, spawnPoints[index].rotation);
-            go.SetActive(true); // 프리팹이 비활성화되어 있을 수 있으므로 활성화
-            
-            var item = go.GetComponentInChildren<ScannableItem>(); // 바코드가 자식일 수도 있으니
-            if (item != null) spawnedItems.Add(item);
-        }
-
     }
 
     public void Scan(ScannableItem item)
@@ -129,35 +109,31 @@ public class CheckoutManager : Singleton<CheckoutManager>
     public void UpdateTotal(int newTotal = -1)
     {
         if (newTotal < 0)
-            total = checkoutUi.GetTotalPrice();
+            total = checkoutUi.GetTotalPrice(); // UI에서 총합 계산
         else
-            total = newTotal;
+            total = newTotal; // 직접 지정
         
         checkoutUi.SetTotal(total);
     }
 
-    /// 결제 버튼 클릭 시 호출되는 메서드
     private void OnCheckoutButtonClicked()
     {
         // 모든 아이템이 올바르게 스캔되었는지 확인
         bool isValid = checkoutUi.ValidateAllItemsScanned(spawnedItems);
         
-        // 결과 텍스트 표시
-        
         if (isValid)
         {
-            FinishCheckout(true);
+            FinishCheckout(true); // 성공
         }
         else
         {
-            // 검증 실패 시 처리 (예: 경고 메시지 표시 등)
-            FinishCheckout(false);
+            FinishCheckout(false); // 실패
         }
     }
 
     public void FinishCheckout(bool isSuccess)
     {
-        // 문구 출력
+        // 결과 문구 출력 (성공/실패)
         checkoutUi.SetResult(isSuccess);
         
         // 타이머 중지
@@ -166,49 +142,34 @@ public class CheckoutManager : Singleton<CheckoutManager>
             TimeManager.Instance.StopTimer();
         }
         
+        // 성공/실패에 따른 돈 처리
         if (isSuccess)
         {
-            playerMoney += total;
+            playerMoney += partTimeMoney; // 총합만큼 돈 추가
             checkoutUi.SetPlayerMoney(playerMoney);
         }
         else
         {
-            playerMoney -= penaltyMoney;
+            playerMoney -= penaltyMoney; // 패널티 금액 차감
             checkoutUi.SetPlayerMoney(playerMoney);
         }
 
-        StartCustomer(); // 다음 손님으로 바로 넘어가고 싶다면
+        StartCustomer(); // 다음 손님으로 바로 넘어가기
     }
 
+    // 라운드 초기화
+    // 총합 초기화 및 ItemManager에 아이템 정리 요청
     private void ClearRound()
     {
         total = 0;
         
-        // sortingOrder 초기화
-        currentMaxSortingOrder = 0;
-
-        // 스폰된 물건 제거
-        for (int i = 0; i < spawnedItems.Count; i++)
+        // ItemManager에 아이템 정리 및 sortingOrder 초기화 요청
+        if (ItemManager.Instance != null)
         {
-            if (spawnedItems[i] != null)
-                Destroy(spawnedItems[i].transform.root.gameObject); 
-            // 바코드가 자식이면 root로 제거
+            ItemManager.Instance.ClearItems();
         }
-        spawnedItems.Clear();
-    }
-    
-    // 에디터에서 스폰 영역을 시각적으로 표시하는 Gizmo
-    private void OnDrawGizmos()
-    {
-        // 스폰 영역 중심점 표시
-        Gizmos.color = Color.yellow;
-        Vector3 center = new Vector3(spawnAreaCenter.x, spawnAreaCenter.y, 0);
-        Gizmos.DrawWireSphere(center, 0.2f);
         
-        // 스폰 영역 사각형 표시
-        Gizmos.color = Color.green;
-        Vector3 size = new Vector3(spawnAreaSize.x, spawnAreaSize.y, 0);
-        Gizmos.DrawWireCube(center, size);
+        spawnedItems.Clear();
     }
 
 }

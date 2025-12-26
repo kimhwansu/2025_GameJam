@@ -13,13 +13,22 @@ public class CheckoutManager : Singleton<CheckoutManager>
 
     [Header("Money")]
     public int playerMoney;
+    [SerializeField] private int penaltyMoney = 1000;
+
+    [Header("GoalMoney")] // 목표 금액
+    [SerializeField] private int goalMoney; 
 
     private readonly List<ScannableItem> spawnedItems = new();
-    private int total;
-
+    private int total;   // 현재 총합
+ 
     private void Start()
     {
+        // 결제 버튼 연결
+        if (checkoutUi != null)
+            checkoutUi.SetCheckoutButton(OnCheckoutButtonClicked);
+        
         StartCustomer();
+        checkoutUi.ClearResult();
     }
 
     public void StartCustomer()
@@ -34,7 +43,7 @@ public class CheckoutManager : Singleton<CheckoutManager>
     private void SpawnGoodsRandom()
     {
 
-        // 6개 위치 중 랜덤으로 3개 선택
+        // 6개 위치 리스트에 새로 복사
         List<int> availableIndices = new List<int>();
         for (int i = 0; i < spawnPoints.Length; i++)
         {
@@ -46,6 +55,7 @@ public class CheckoutManager : Singleton<CheckoutManager>
         int countToSpawn = Mathf.Min(spawnCount, availableIndices.Count);
         List<int> selectedIndices = new List<int>();
 
+        // selectedIndices에 랜덤으로 뽑은 3개의 아이템 추가
         for (int i = 0; i < countToSpawn; i++)
         {
             int randomIndex = Random.Range(0, availableIndices.Count);
@@ -83,10 +93,42 @@ public class CheckoutManager : Singleton<CheckoutManager>
         checkoutUi.SetTotal(total);
     }
 
-    public void FinishCheckout()
+    /// <summary>
+    /// 결제 버튼 클릭 시 호출되는 메서드
+    /// </summary>
+    private void OnCheckoutButtonClicked()
     {
-        playerMoney += total;
-        checkoutUi.SetPlayerMoney(playerMoney);
+        // 모든 아이템이 올바르게 스캔되었는지 확인
+        bool isValid = checkoutUi.ValidateAllItemsScanned(spawnedItems);
+        
+        // 결과 텍스트 표시
+        checkoutUi.SetResult(isValid);
+        
+        if (isValid)
+        {
+            Debug.Log("검증 성공: 모든 아이템이 올바르게 스캔되었습니다.");
+            FinishCheckout(true);
+        }
+        else
+        {
+            Debug.LogWarning("검증 실패: 모든 아이템이 올바른 개수로 스캔되지 않았습니다.");
+            // 검증 실패 시 처리 (예: 경고 메시지 표시 등)
+            FinishCheckout(false);
+        }
+    }
+
+    public void FinishCheckout(bool isSuccess)
+    {
+        if (isSuccess)
+        {
+            playerMoney += total;
+            checkoutUi.SetPlayerMoney(playerMoney);
+        }
+        else
+        {
+            playerMoney -= penaltyMoney;
+            checkoutUi.SetPlayerMoney(playerMoney);
+        }
 
         StartCustomer(); // 다음 손님으로 바로 넘어가고 싶다면
     }

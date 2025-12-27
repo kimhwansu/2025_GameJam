@@ -101,7 +101,7 @@ public class PurchaseButton : MonoBehaviour
         {
             // 구매 전 상태 - 가격 표시
             if (purchaseButtonText != null)
-                purchaseButtonText.text = $"{itemPrice:N0} Coin";
+                purchaseButtonText.text = $"{itemPrice:N0}";
 
             CheckAffordable();
         }

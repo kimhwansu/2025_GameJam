@@ -10659,7 +10659,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000061035156, y: -0}
+  m_AnchoredPosition: {x: -0.000061035156, y: 0}
   m_SizeDelta: {x: 503, y: 176}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1153224772
@@ -12826,7 +12826,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000061035156, y: -0}
+  m_AnchoredPosition: {x: -0.000061035156, y: 0}
   m_SizeDelta: {x: 503, y: 176}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1402107697
@@ -17715,7 +17715,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000061035156, y: -0}
+  m_AnchoredPosition: {x: -0.000061035156, y: 0}
   m_SizeDelta: {x: 503, y: 176}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1890256083
@@ -19604,6 +19604,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1426874613607121576, guid: 533c32c76fc4b144594f68e439ba1726, type: 3}
+      propertyPath: moneyPresenter
+      value: 
+      objectReference: {fileID: 2104373724}
+    - target: {fileID: 1426874613607121576, guid: 533c32c76fc4b144594f68e439ba1726, type: 3}
+      propertyPath: charge1000Button
+      value: 
+      objectReference: {fileID: 982158478}
+    - target: {fileID: 1426874613607121576, guid: 533c32c76fc4b144594f68e439ba1726, type: 3}
+      propertyPath: charge5000Button
+      value: 
+      objectReference: {fileID: 1511690739}
+    - target: {fileID: 1426874613607121576, guid: 533c32c76fc4b144594f68e439ba1726, type: 3}
+      propertyPath: charge10000Button
+      value: 
+      objectReference: {fileID: 2034196977}
     - target: {fileID: 1987301017661303013, guid: 533c32c76fc4b144594f68e439ba1726, type: 3}
       propertyPath: m_Name
       value: Manager

@@ -110,7 +110,7 @@ MonoBehaviour:
   attackInterval: 4
   attackDistance: 1
   attackSpeed: 10
-  goldReward: 500
+  goldReward: 10
   blinkInterval: 1
   blinkDuration: 0.2
 --- !u!61 &1691644025088567749

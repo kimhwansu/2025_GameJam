@@ -104,9 +104,9 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 0
   moveSpeed: 2
-  minDistance: 1
+  minDistance: 1.5
   detectionRange: 10
-  goldReward: 50
+  goldReward: 500
 --- !u!61 &1691644025088567749
 BoxCollider2D:
   m_ObjectHideFlags: 0

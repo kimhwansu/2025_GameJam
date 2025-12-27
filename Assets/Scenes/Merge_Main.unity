@@ -3774,7 +3774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterPrefab: {fileID: 505402548554626430, guid: 17dc30de117e99743873ea13652931d6, type: 3}
-  spawnPosition: {x: 8.2, y: 2.08}
+  spawnPosition: {x: 9.3, y: 2.08}
   spawnInterval: 10
   queueSpacing: 1
 --- !u!4 &1492543149

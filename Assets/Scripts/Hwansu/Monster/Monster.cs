@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 
 public class Monster : MonoBehaviour
 {
@@ -11,8 +12,17 @@ public class Monster : MonoBehaviour
     [SerializeField] private float minDistance = 1f;
     [SerializeField] private float detectionRange = 10f;
 
+    [Header("공격 설정")]
+    [SerializeField] private float attackInterval = 4f; // 공격 간격
+    [SerializeField] private float attackDistance = 1f; // 몸통박치기 이동 거리
+    [SerializeField] private float attackSpeed = 10f; // 몸통박치기 속도
+
     [Header("사망 시 효과")]
     [SerializeField] private int goldReward = 50;
+
+    [Header("깜빡임 효과")]
+    [SerializeField] private float blinkInterval = 0.6f;
+    [SerializeField] private float blinkDuration = 0.1f;
 
     public event Action OnMonsterDeath;
 
@@ -20,14 +30,25 @@ public class Monster : MonoBehaviour
     private bool isWaiting = false;
     private Vector2 waitPosition;
     private MonsterSpawner spawner;
-    private int initialMaxHealth; // 초기 최대 체력 저장
+    private int initialMaxHealth;
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor = Color.white;
+
+    private float attackTimer = 0f;
+    private bool isAttacking = false;
+    private bool canAttack = false; // minDistance 도달 여부
 
     public void Initialize(MonsterSpawner monsterSpawner)
     {
         spawner = monsterSpawner;
         initialMaxHealth = maxHealth;
 
-        // 모든 StatBar의 MAX 카운트 합산
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = originalColor;
+        }
+
         StatBar[] statBars = UnityEngine.Object.FindObjectsByType<StatBar>(FindObjectsSortMode.None);
 
         int totalMaxCount = 0;
@@ -38,20 +59,18 @@ public class Monster : MonoBehaviour
             statBar.OnMaxReached += OnStatMaxReached;
         }
 
-        // 총 MAX 카운트만큼 최대 체력 감소
         maxHealth = Mathf.Max(1, maxHealth - totalMaxCount);
         currentHealth = maxHealth;
-
-        Debug.Log($"몬스터 생성 - 총 MAX 카운트: {totalMaxCount}, 최대 체력: {maxHealth}");
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
             playerTransform = player.transform;
+
+        StartCoroutine(BlinkRoutine());
     }
 
     private void OnDestroy()
     {
-        // 모든 StatBar 이벤트 구독 해제
         StatBar[] statBars = UnityEngine.Object.FindObjectsByType<StatBar>(FindObjectsSortMode.None);
 
         foreach (StatBar statBar in statBars)
@@ -63,22 +82,41 @@ public class Monster : MonoBehaviour
         }
     }
 
+    private IEnumerator BlinkRoutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(blinkInterval);
+
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = Color.red;
+            }
+
+            yield return new WaitForSeconds(blinkDuration);
+
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = originalColor;
+            }
+        }
+    }
+
     private void OnStatMaxReached()
     {
-        // 최대 체력 감소 (최소 1 유지)
         maxHealth = Mathf.Max(1, maxHealth - 1);
 
-        // 현재 체력도 최대 체력을 초과하지 않도록 조정
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
         }
-
-        Debug.Log($"몬스터 최대 체력 감소! 현재 최대 체력: {maxHealth}");
     }
 
     private void Update()
     {
+        if (isAttacking)
+            return;
+
         if (isWaiting)
         {
             MoveToWaitPosition();
@@ -86,6 +124,17 @@ public class Monster : MonoBehaviour
         else if (playerTransform != null)
         {
             ChasePlayer();
+
+            // minDistance 안에 있으면 공격 타이머 작동
+            if (canAttack)
+            {
+                attackTimer += Time.deltaTime;
+                if (attackTimer >= attackInterval)
+                {
+                    attackTimer = 0f;
+                    StartCoroutine(PerformAttack());
+                }
+            }
         }
     }
 
@@ -97,28 +146,91 @@ public class Monster : MonoBehaviour
 
     private void MoveToWaitPosition()
     {
-        float distance = Vector2.Distance(transform.position, waitPosition);
+        float distance = Mathf.Abs(transform.position.x - waitPosition.x);
         if (distance > 0.1f)
         {
-            Vector2 direction = (waitPosition - (Vector2)transform.position).normalized;
-            transform.position = Vector2.MoveTowards(transform.position, waitPosition, moveSpeed * Time.deltaTime);
+            float newX = Mathf.MoveTowards(transform.position.x, waitPosition.x, moveSpeed * Time.deltaTime);
+            transform.position = new Vector2(newX, transform.position.y);
 
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            float direction = Mathf.Sign(waitPosition.x - transform.position.x);
+            float angle = direction > 0 ? 0 : 180;
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }
     }
 
     private void ChasePlayer()
     {
-        float distance = Vector2.Distance(transform.position, playerTransform.position);
-        if (distance <= detectionRange && distance > minDistance)
-        {
-            Vector2 direction = (playerTransform.position - transform.position).normalized;
-            transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
+        float distance = Mathf.Abs(transform.position.x - playerTransform.position.x);
 
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        if (distance <= minDistance)
+        {
+            // minDistance 안에 도달 - 공격 가능 상태
+            canAttack = true;
+
+            // 플레이어 방향으로 회전만 유지
+            float direction = Mathf.Sign(playerTransform.position.x - transform.position.x);
+            float angle = direction > 0 ? 0 : 180;
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }
+        else if (distance <= detectionRange)
+        {
+            // 추적 범위 안 - 이동
+            canAttack = false;
+            attackTimer = 0f; // 타이머 리셋
+
+            float newX = Mathf.MoveTowards(transform.position.x, playerTransform.position.x, moveSpeed * Time.deltaTime);
+            transform.position = new Vector2(newX, transform.position.y);
+
+            float direction = Mathf.Sign(playerTransform.position.x - transform.position.x);
+            float angle = direction > 0 ? 0 : 180;
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
+        else
+        {
+            // 범위 밖
+            canAttack = false;
+            attackTimer = 0f;
+        }
+    }
+
+    private IEnumerator PerformAttack()
+    {
+        isAttacking = true;
+
+        // 플레이어 방향 계산
+        float direction = Mathf.Sign(playerTransform.position.x - transform.position.x);
+
+        // 시작 위치 저장
+        Vector2 startPos = transform.position;
+        Vector2 attackPos = startPos + new Vector2(direction * attackDistance, 0);
+
+        // 앞으로 돌진
+        float elapsed = 0f;
+        float dashTime = attackDistance / attackSpeed;
+
+        while (elapsed < dashTime)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / dashTime;
+            transform.position = Vector2.Lerp(startPos, attackPos, t);
+            yield return null;
+        }
+
+        // 짧은 대기
+        yield return new WaitForSeconds(0.1f);
+
+        // 원래 위치로 복귀
+        elapsed = 0f;
+        while (elapsed < dashTime)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / dashTime;
+            transform.position = Vector2.Lerp(attackPos, startPos, t);
+            yield return null;
+        }
+
+        transform.position = startPos;
+        isAttacking = false;
     }
 
     public void TakeDamage()
@@ -141,7 +253,6 @@ public class Monster : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // 현재 체력 정보 확인용
     public int GetCurrentHealth()
     {
         return currentHealth;

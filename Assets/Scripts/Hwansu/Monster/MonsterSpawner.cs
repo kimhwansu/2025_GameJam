@@ -7,32 +7,13 @@ public class MonsterSpawner : MonoBehaviour
     [Header("생성 설정")]
     [SerializeField] private GameObject monsterPrefab;
     [SerializeField] private Vector2 spawnPosition = new Vector2(10, 0);
-    [SerializeField] private float spawnInterval = 3f;
 
-    [Header("대기 간격")]
-    [SerializeField] private float queueSpacing = 1f; // 몬스터 간 X축 간격
-    [SerializeField] private float ySpacing = 0.5f; // 몬스터 간 Y축 간격
-
-    private List<Monster> monsters = new List<Monster>();
+    private Monster currentMonster;
 
     private void Start()
     {
-        StartCoroutine(SpawnRoutine());
-    }
-
-    private void Update()
-    {
-        // 매 프레임마다 몬스터 간격 유지
-        UpdateAllMonsterPositions();
-    }
-
-    private IEnumerator SpawnRoutine()
-    {
-        while (true)
-        {
-            SpawnMonster();
-            yield return new WaitForSeconds(spawnInterval);
-        }
+        // 첫 번째 몬스터 생성
+        SpawnMonster();
     }
 
     private void SpawnMonster()
@@ -43,45 +24,21 @@ public class MonsterSpawner : MonoBehaviour
         if (monster != null)
         {
             monster.Initialize(this);
-            monsters.Add(monster);
+            currentMonster = monster;
 
-            // 첫 번째 몬스터는 바로 활성화
-            if (monsters.Count == 1)
-            {
-                monster.SetWaitMode(false, Vector2.zero);
-            }
-            else
-            {
-                // 바로 앞 몬스터 위치에서 간격만큼 뒤에 배치
-                UpdateAllMonsterPositions();
-            }
-        }
-    }
-
-    private void UpdateAllMonsterPositions()
-    {
-        for (int i = 0; i < monsters.Count; i++)
-        {
-            if (i == 0)
-            {
-                // 첫 번째 몬스터는 플레이어 추적
-                monsters[i].SetWaitMode(false, Vector2.zero);
-            }
-            else
-            {
-                // 앞 몬스터의 X좌표에서 2씩, Y좌표는 0.3
-                Vector2 frontMonsterPos = monsters[i - 1].transform.position;
-                Vector2 waitPos = new Vector2(frontMonsterPos.x + queueSpacing, frontMonsterPos.y + ySpacing);
-                monsters[i].SetWaitMode(true, waitPos);
-            }
+            // 몬스터 활성화 (플레이어 추적 모드)
+            monster.SetWaitMode(false, Vector2.zero);
         }
     }
 
     public void OnMonsterDeath(Monster monster)
     {
-        monsters.Remove(monster);
+        if (currentMonster == monster)
+        {
+            currentMonster = null;
 
-        // 모든 몬스터 위치 재조정
-        UpdateAllMonsterPositions();
+            // 몬스터가 사망하면 즉시 새로운 몬스터 생성
+            SpawnMonster();
+        }
     }
 }

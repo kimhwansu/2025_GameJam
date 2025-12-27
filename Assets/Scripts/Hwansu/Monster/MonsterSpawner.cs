@@ -11,7 +11,6 @@ public class MonsterSpawner : MonoBehaviour
 
     [Header("대기 간격")]
     [SerializeField] private float queueSpacing = 1f; // 몬스터 간 X축 간격
-    [SerializeField] private float ySpacing = 0.5f; // 몬스터 간 Y축 간격
 
     private List<Monster> monsters = new List<Monster>();
 
@@ -69,9 +68,10 @@ public class MonsterSpawner : MonoBehaviour
             }
             else
             {
-                // 앞 몬스터의 X좌표에서 2씩, Y좌표는 0.3
+                // 앞 몬스터의 X좌표에서 queueSpacing만큼 뒤에, Y좌표는 동일하게
                 Vector2 frontMonsterPos = monsters[i - 1].transform.position;
-                Vector2 waitPos = new Vector2(frontMonsterPos.x + queueSpacing, frontMonsterPos.y + ySpacing);
+                Vector2 waitPos = new Vector2(frontMonsterPos.x + queueSpacing, frontMonsterPos.y);
+
                 monsters[i].SetWaitMode(true, waitPos);
             }
         }
@@ -80,7 +80,6 @@ public class MonsterSpawner : MonoBehaviour
     public void OnMonsterDeath(Monster monster)
     {
         monsters.Remove(monster);
-
         // 모든 몬스터 위치 재조정
         UpdateAllMonsterPositions();
     }

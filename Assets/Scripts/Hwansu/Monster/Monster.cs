@@ -97,26 +97,34 @@ public class Monster : MonoBehaviour
 
     private void MoveToWaitPosition()
     {
-        float distance = Vector2.Distance(transform.position, waitPosition);
+        float distance = Mathf.Abs(transform.position.x - waitPosition.x);
         if (distance > 0.1f)
         {
-            Vector2 direction = (waitPosition - (Vector2)transform.position).normalized;
-            transform.position = Vector2.MoveTowards(transform.position, waitPosition, moveSpeed * Time.deltaTime);
+            // X축으로만 이동, Y축은 고정
+            float newX = Mathf.MoveTowards(transform.position.x, waitPosition.x, moveSpeed * Time.deltaTime);
+            transform.position = new Vector2(newX, transform.position.y);
 
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            // 이동 방향에 따라 회전
+            float direction = Mathf.Sign(waitPosition.x - transform.position.x);
+            float angle = direction > 0 ? 0 : 180;
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }
     }
 
     private void ChasePlayer()
     {
-        float distance = Vector2.Distance(transform.position, playerTransform.position);
+        // X축 거리만 계산
+        float distance = Mathf.Abs(transform.position.x - playerTransform.position.x);
+
         if (distance <= detectionRange && distance > minDistance)
         {
-            Vector2 direction = (playerTransform.position - transform.position).normalized;
-            transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
+            // X축으로만 이동, Y축은 고정
+            float newX = Mathf.MoveTowards(transform.position.x, playerTransform.position.x, moveSpeed * Time.deltaTime);
+            transform.position = new Vector2(newX, transform.position.y);
 
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            // 이동 방향에 따라 회전
+            float direction = Mathf.Sign(playerTransform.position.x - transform.position.x);
+            float angle = direction > 0 ? 0 : 180;
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }
     }

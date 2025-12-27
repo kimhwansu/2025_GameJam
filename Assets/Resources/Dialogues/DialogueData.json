@@ -2,7 +2,118 @@
   "dialogues": [
     {
       "dialogueId": "dialogue_001",
-      "npcName": "손님6",
+      "npcName": "그거",
+      "defaultPortraitId": "npc1",
+      "lines": [
+        {
+          "speaker": "NPC",
+          "text": "야 그거 어딨냐?",
+          "portraitId": ""
+        },
+        {
+          "speaker": "PLAYER",
+          "text": "혹시 이거 찾으세요?",
+          "portraitId": ""
+        },
+        {
+          "speaker": "NPC",
+          "text": "이건 그거 아니잖아.",
+          "portraitId": ""
+        }
+      ]
+    },
+    {
+      "dialogueId": "dialogue_002",
+      "npcName": "어르신",
+      "defaultPortraitId": "npc2",
+      "lines": [
+        {
+          "speaker": "NPC",
+          "text": "너무 비싸. 좀 깎아줘",
+          "portraitId": ""
+        },
+        {
+          "speaker": "PLAYER",
+          "text": "정가에 사세요.",
+          "portraitId": ""
+        },
+        {
+          "speaker": "NPC",
+          "text": "에잉, 쯧. 나때는 말이야!!",
+          "portraitId": ""
+        }
+      ]
+    },
+    {
+      "dialogueId": "dialogue_003",
+      "npcName": "취객",
+      "defaultPortraitId": "npc3",
+      "lines": [
+        {
+          "speaker": "NPC",
+          "text": "으어.. 딸꾹. 계산 좀 해주소.",
+          "portraitId": ""
+        },
+        {
+          "speaker": "PLAYER",
+          "text": "넵",
+          "portraitId": ""
+        },
+        {
+          "speaker": "NPC",
+          "text": "쑤고.. 딸꾹..",
+          "portraitId": ""
+        }
+      ]
+    },
+    {
+      "dialogueId": "dialogue_004",
+      "npcName": "베지터",
+      "defaultPortraitId": "npc4",
+      "lines": [
+        {
+          "speaker": "NPC",
+          "text": "내가 누군지 아나?",
+          "portraitId": ""
+        },
+        {
+          "speaker": "PLAYER",
+          "text": "몰라요",
+          "portraitId": ""
+        },
+        {
+          "speaker": "NPC",
+          "text": "내가 누군지 몰라?",
+          "portraitId": "npc4-1"
+        }
+      ]
+    },
+    
+    {
+      "dialogueId": "dialogue_005",
+      "npcName": "미식가",
+      "defaultPortraitId": "npc5",
+      "lines": [
+        {
+          "speaker": "NPC",
+          "text": "야 이거 맛이 없더라. 싸게 줘라.",
+          "portraitId": ""
+        },
+        {
+          "speaker": "PLAYER",
+          "text": "안됩니다",
+          "portraitId": ""
+        },
+        {
+          "speaker": "NPC",
+          "text": "뭐라고?!",
+          "portraitId": ""
+        }
+      ]
+    },
+    {
+      "dialogueId": "dialogue_006",
+      "npcName": "호아킨",
       "defaultPortraitId": "npc6",
       "lines": [
         {
@@ -13,51 +124,28 @@
       ]
     },
     {
-        "dialogueId": "dialogue_002",
-        "npcName": "손님4",
-        "defaultPortraitId": "npc4",
-        "lines": [
-          {
-            "speaker": "NPC",
-            "text": "내가 누군지 아나?",
-            "portraitId": ""
-          },
-          {
-            "speaker": "PLAYER",
-            "text": "몰라요",
-            "portraitId": ""
-          },
-          {
-            "speaker": "NPC",
-            "text": "내가 누군지 몰라?",
-            "portraitId": "npc4-1"
-          }
-        ]
-      },
-      {
-        "dialogueId": "dialogue_003",
-        "npcName": "손님7",
-        "defaultPortraitId": "npc7",
-        "lines": [
-          {
-            "speaker": "NPC",
-            "text": "계산.",
-            "portraitId": ""
-          }
-        ]
-      },
-      {
-        "dialogueId": "dialogue_004",
-        "npcName": "손님1",
-        "defaultPortraitId": "npc1",
-        "lines": [
-          {
-            "speaker": "NPC",
-            "text": "도를 아십니까?",
-            "portraitId": ""
-          }
-        ]
-      }
+      "dialogueId": "dialogue_007",
+      "npcName": "쿨가이",
+      "defaultPortraitId": "npc7",
+      "lines": [
+        {
+          "speaker": "NPC",
+          "text": "계산.",
+          "portraitId": ""
+        }
+      ]
+    },
+    {
+      "dialogueId": "dialogue_006",
+      "npcName": "도인인",
+      "defaultPortraitId": "npc8",
+      "lines": [
+        {
+          "speaker": "NPC",
+          "text": "도를 아십니까?",
+          "portraitId": ""
+        }
+      ]
+    }
   ]
 }
-

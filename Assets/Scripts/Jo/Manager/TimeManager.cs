@@ -96,10 +96,10 @@ public class TimeManager : Singleton<TimeManager>
         isTimerRunning = false;
         isRestTime = false;
         
-        // 휴식 종료 후 다음 손님 시작
-        if (CheckoutManager.Instance != null)
+        // DateManager에 휴식 시간 종료 알림 (일차 증가 처리 및 다음 손님 시작)
+        if (DateManager.Instance != null)
         {
-            CheckoutManager.Instance.StartCustomer();
+            DateManager.Instance.OnRestTimeEnded();
         }
     }
     

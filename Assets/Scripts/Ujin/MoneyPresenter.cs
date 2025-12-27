@@ -5,10 +5,6 @@ public class MoneyPresenter : MonoBehaviour
     [SerializeField] private MoneyView view;
     public MoneyData Model { get; private set; }
 
-    private void Awake()
-    {
-        view  = GetComponent<MoneyView>();
-    }
     public void Init(MoneyData model)
     {
         Model = model;

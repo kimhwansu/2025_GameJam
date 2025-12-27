@@ -1,14 +1,13 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 public class MoneyView : MonoBehaviour
 {
-    [SerializeField] private Text moneyText;
+    [SerializeField] private TextMeshProUGUI moneyText;
     private void Awake()
     {
-        moneyText = GetComponent<Text>();
+        moneyText = GetComponent<TextMeshProUGUI>();
     }
     public void SetMoney(int value)
     {

@@ -1,14 +1,15 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class DialogueManager : Singleton<DialogueManager>
 {
     [Header("UI")]
     [SerializeField] private GameObject dialogueUIObject; // 대화 UI 오브젝트
     public Image portraitImage;
-    public Text nameText; // 이름 표시용 Text
-    public Text dialogueText; // 대사 표시용 Text
+    public TextMeshProUGUI nameText; // 이름 표시용 Text
+    public TextMeshProUGUI dialogueText; // 대사 표시용 Text
 
     private DialogueData data;
     private int index;

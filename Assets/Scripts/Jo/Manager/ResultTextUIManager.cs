@@ -1,11 +1,12 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ResultTextUIManager : Singleton<ResultTextUIManager>
 {
     [Header("UI")]
-    [SerializeField] private Text resultText; // 결과 텍스트
+    [SerializeField] private TextMeshProUGUI resultText; // 결과 텍스트
     
     [Header("Animation Settings")]
     [SerializeField] private float moveDistance = 100f; // 위로 이동할 거리

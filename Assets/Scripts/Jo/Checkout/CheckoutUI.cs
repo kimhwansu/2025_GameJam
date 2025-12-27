@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// 포스기 전체 UI 갱신 담당
@@ -10,8 +11,8 @@ public class CheckoutUI : Singleton<CheckoutUI>
 {
     [SerializeField] private Transform listParent;  // 프리팹 생성될 위치 
     [SerializeField] private GameObject linePrefab; // (아이콘, 이름, 가격) UI 프리팹
-    [SerializeField] private Text totalText;
-    [SerializeField] private Text moneyText;
+    [SerializeField] private TextMeshProUGUI totalText;
+    [SerializeField] private TextMeshProUGUI moneyText;
     [SerializeField] private Button checkoutButton; // 결제 버튼
 
     private readonly List<CheckoutUILine> lineList = new();

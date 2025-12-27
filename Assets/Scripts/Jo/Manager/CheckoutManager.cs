@@ -5,7 +5,6 @@ using UnityEngine;
 /// <summary>
 /// 1. 전반적인 손님 처리와 타이머 & 휴식시간 관리
 /// 2. 계산 결과에 따른 보유 금액 갱신
-/// </summary>
 
 
 public class CheckoutManager : Singleton<CheckoutManager>
@@ -16,8 +15,8 @@ public class CheckoutManager : Singleton<CheckoutManager>
 
     [Header("Money")]
     [SerializeField] private int playerMoney; // 보유 금액
-    [SerializeField] private int partTimeMoney = 2000; // 고정 획득 금액
-    [SerializeField] private int penaltyMoney = 1000; // 패널티 금액
+    [SerializeField] private int partTimeMoney = 10000; // 고정 획득 금액
+    [SerializeField] private int penaltyMoney = 0; // 패널티 금액
 
     [Header("GoalMoney")] // 목표 금액 (배치된 아이템들 총합)
     [SerializeField] private int goalMoney; 
@@ -38,12 +37,19 @@ public class CheckoutManager : Singleton<CheckoutManager>
         if (checkoutUi != null)
             checkoutUi.SetCheckoutButton(OnCheckoutButtonClicked);
         
-        StartCustomer();
+        // 게임이 시작되지 않았으면 손님 시작하지 않음 (오프닝 UI에서 OK 버튼을 누를 때까지 대기)
+        // StartCustomer()는 DateManager의 OnOpeningOKClicked에서 호출됨
     }
 
     public void StartCustomer()
     {
         //Debug.Log("CheckoutManager: StartCustomer 호출됨");
+        
+        // 게임이 시작되지 않았으면 무시
+        if (DateManager.Instance != null && !DateManager.Instance.IsGameStarted())
+        {
+            return;
+        }
         
         // 손님 수 증가 (휴식 체크용)
         if (CustomerManager.Instance != null)
@@ -71,24 +77,39 @@ public class CheckoutManager : Singleton<CheckoutManager>
         }
     }
     
-    // 랜덤 대화 시작
+    // DateManager에서 정해진 순서대로 대화 시작
     private void StartDialogue()
     {
-        // 사용된 대화를 제외하고 랜덤으로 대화 데이터 선택
-        DialogueData randomDialogue = DialogueDataLoader.GetRandomDialogueExcluding(usedDialogueIds);
+        DialogueData dialogue = null;
         
-        if (randomDialogue != null && DialogueManager.Instance != null)
+        // DateManager에서 다음 손님 dialogueId 가져오기
+        if (DateManager.Instance != null)
         {
-            // 사용된 대화 ID 추가
-            if (!string.IsNullOrEmpty(randomDialogue.dialogueId))
+            string nextDialogueId = DateManager.Instance.GetNextCustomerDialogueId();
+            if (!string.IsNullOrEmpty(nextDialogueId))
             {
-                usedDialogueIds.Add(randomDialogue.dialogueId);
+                dialogue = DialogueDataLoader.GetDialogueById(nextDialogueId);
+            }
+        }
+        
+        // DateManager에서 가져온 대화가 없으면 랜덤 선택 (폴백)
+        if (dialogue == null)
+        {
+            dialogue = DialogueDataLoader.GetRandomDialogueExcluding(usedDialogueIds);
+        }
+        
+        if (dialogue != null && DialogueManager.Instance != null)
+        {
+            // 사용된 대화 ID 추가 (디버깅용)
+            if (!string.IsNullOrEmpty(dialogue.dialogueId))
+            {
+                usedDialogueIds.Add(dialogue.dialogueId);
             }
             
             // 대화의 defaultPortraitId에 맞는 손님 이미지 설정
-            if (CustomerManager.Instance != null && !string.IsNullOrEmpty(randomDialogue.defaultPortraitId))
+            if (CustomerManager.Instance != null && !string.IsNullOrEmpty(dialogue.defaultPortraitId))
             {
-                CustomerManager.Instance.SetCustomerByPortraitId(randomDialogue.defaultPortraitId);
+                CustomerManager.Instance.SetCustomerByPortraitId(dialogue.defaultPortraitId);
                 // 대화 시작 시 손님 이미지 활성화
                 CustomerManager.Instance.ShowCustomerImage();
             }
@@ -100,7 +121,7 @@ public class CheckoutManager : Singleton<CheckoutManager>
             StartCustomerRound();
             
             // 대화 시작
-            DialogueManager.Instance.StartDialogue(randomDialogue);
+            DialogueManager.Instance.StartDialogue(dialogue);
         }
         else
         {
@@ -149,7 +170,9 @@ public class CheckoutManager : Singleton<CheckoutManager>
     // 휴식 시간 시작
     private void StartRestTime()
     {
-        Debug.Log($"휴식 시간 시작! (손님 {CustomerManager.Instance.GetCustomerCount()}명 처리 완료)");
+        int currentDay = DateManager.Instance != null ? DateManager.Instance.GetCurrentDay() : 1;
+        int customerCount = DateManager.Instance != null ? DateManager.Instance.GetCurrentDayCustomerCount() : 0;
+        Debug.Log($"{currentDay}일차 휴식 시간 시작! (손님 {customerCount}명 처리 완료)");
         
         // 라운드 초기화 (아이템 제거)
         ClearRound();
@@ -242,8 +265,21 @@ public class CheckoutManager : Singleton<CheckoutManager>
         checkoutUi.ClearList();
         checkoutUi.SetTotal(0);
 
-        // 다음 손님으로 넘어가기 (대화 시작)
-        StartCustomer();
+        // 손님 나가는 애니메이션 (계산이 끝난 후)
+        // ExitShow 완료 후 다음 손님 시작
+        if (CustomerManager.Instance != null)
+        {
+            CustomerManager.Instance.HideCustomerImage(() =>
+            {
+                // ExitShow 완료 후 다음 손님으로 넘어가기
+                StartCustomer();
+            });
+        }
+        else
+        {
+            // CustomerManager가 없으면 바로 다음 손님 시작
+            StartCustomer();
+        }
     }
 
     // 라운드 초기화

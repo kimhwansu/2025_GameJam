@@ -1,3 +1,5 @@
+
+// 클릭 되었을 때 / 클릭을 뗏을 때
 public interface IClickable
 {
     void OnClickDown(UnityEngine.Vector2 worldPos);

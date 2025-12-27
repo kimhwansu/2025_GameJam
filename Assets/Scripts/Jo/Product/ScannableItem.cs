@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// 아이템 프리팹에 부착된 스크립트
+/// </summary>
+
 public class ScannableItem : MonoBehaviour, IClickable
 {
     [SerializeField] public ProductData data;

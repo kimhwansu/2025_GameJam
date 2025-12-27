@@ -162,8 +162,12 @@ public class PurchaseButton : MonoBehaviour
                 Debug.Log($"배경 {itemNumber}번 지급 및 변경");
                 break;
             case ItemCategory.Effect:
-                // 이펙트 아이템 지급 로직
-                Debug.Log($"이펙트 {itemNumber}번 지급");
+                // 이펙트 아이템 지급 - 이펙트 변경
+                if (EffectManager.Instance != null)
+                {
+                    EffectManager.Instance.ChangeEffect(itemNumber);
+                }
+                Debug.Log($"이펙트 {itemNumber}번 지급 및 변경");
                 break;
         }
     }

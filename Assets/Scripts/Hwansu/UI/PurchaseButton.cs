@@ -21,6 +21,16 @@ public class PurchaseButton : MonoBehaviour
         // 타입에 따른 가격 설정
         SetPriceByType();
 
+        // 가격 버튼은 클릭 불가로 설정 (배경색은 유지)
+        if (priceButton != null)
+        {
+            priceButton.interactable = false;
+            // ColorBlock을 사용하여 비활성화 색상을 일반 색상과 동일하게 설정
+            ColorBlock colors = priceButton.colors;
+            colors.disabledColor = colors.normalColor;
+            priceButton.colors = colors;
+        }
+
         // 구매 버튼 클릭 이벤트 연결
         if (purchaseButton != null)
         {

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8405677979621319}
   - component: {fileID: 4698816918245570759}
   - component: {fileID: 4772738781104883604}
+  - component: {fileID: 46214184048954232}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -114,3 +115,19 @@ MonoBehaviour:
   bg4:
     backgroundObject1: {fileID: 0}
     backgroundObject2: {fileID: 0}
+--- !u!114 &46214184048954232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987301017661303013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a88655016daba444b81da5e90382f5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultEffectPrefab: {fileID: 6758092406210747230, guid: 5269e5e7b051d7c46a04bfe50b90b4c8, type: 3}
+  effect1Prefab: {fileID: 6758092406210747230, guid: 3114536341dbb0841949d49ebe8a1761, type: 3}
+  effect2Prefab: {fileID: 6758092406210747230, guid: 3fdcdcab938f0cb4ba452693eb7b8023, type: 3}
+  effect3Prefab: {fileID: 6758092406210747230, guid: 8a607db95fb5a824cbdb514d28c84fef, type: 3}

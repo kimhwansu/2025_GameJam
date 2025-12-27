@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5f6a881b2b67fb40afd16ff46844dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 10
+  attackRange: 4
   attackInterval: 2
   monsterLayer:
     serializedVersion: 2

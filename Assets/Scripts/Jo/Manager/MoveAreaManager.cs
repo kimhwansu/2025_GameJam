@@ -9,3 +9,4 @@ public class MoveAreaManager : Singleton<MoveAreaManager>
         return moveArea;
     }
 }
+

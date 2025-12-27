@@ -2,9 +2,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 포스기 전체 UI 갱신 담당
+/// </summary>
+
 public class CheckoutUI : MonoBehaviour
 {
-    [SerializeField] private Transform listParent;
+    [SerializeField] private Transform listParent;  // 프리팹 생성될 위치 
     [SerializeField] private GameObject linePrefab; // (아이콘, 이름, 가격) UI 프리팹
     [SerializeField] private Text totalText;
     [SerializeField] private Text moneyText;
@@ -12,11 +16,13 @@ public class CheckoutUI : MonoBehaviour
 
     private readonly List<CheckoutUILine> lineList = new();
 
+    // 바코드 스캔 시 제품 정보 추가
     public void AddLine(string productId, Sprite icon, string name, int price)
     {
-        // 같은 제품이 이미 리스트에 있는지 확인
-        foreach (var uiLine in lineList)
+        // 선택된 제품들 순회
+        foreach (CheckoutUILine uiLine in lineList)
         {
+            // 동일한 제품인지 확인 (제품ID 비교)
             if (uiLine != null && uiLine.IsSameProduct(productId))
             {
                 uiLine.IncreaseCount();
@@ -25,13 +31,14 @@ public class CheckoutUI : MonoBehaviour
             }
         }
 
-        // 새로운 제품이면 새 라인 추가
+        // 새로운 제품 - 새 라인 추가
         var go = Instantiate(linePrefab, listParent);
         var line = go.GetComponent<CheckoutUILine>();
-        line.Set(productId, icon, name, price, RemoveLine, UpdateTotal);
-        lineList.Add(line);
+        line.Set(productId, icon, name, price, RemoveLine, UpdateTotal); // 라인 ui 지정
+        lineList.Add(line); 
     }
 
+    // 제품 정보 삭제 (라인 삭제)
     public void RemoveLine(CheckoutUILine line)
     {
         if (line == null) return;
@@ -57,10 +64,11 @@ public class CheckoutUI : MonoBehaviour
             CheckoutManager.Instance.UpdateTotal(newTotal);
     }
 
+    // 전체 통합 금액 계산
     public int GetTotalPrice()
     {
         int total = 0;
-        foreach (var line in lineList)
+        foreach (var line in lineList) // 라인 리스트 순회 후 통합 금액 누적
         {
             if (line != null)
                 total += line.GetTotalPrice();
@@ -68,6 +76,7 @@ public class CheckoutUI : MonoBehaviour
         return total;
     }
 
+    
     public void ClearList()
     {
         for (int i = listParent.childCount - 1; i >= 0; i--)
@@ -75,6 +84,7 @@ public class CheckoutUI : MonoBehaviour
         lineList.Clear();
     }
 
+    // 텍스트 갱신
     public void SetTotal(int total) => totalText.text = $"합계: {total:N0}원";
     public void SetPlayerMoney(int money) => moneyText.text = $"보유: {money:N0}원";
     

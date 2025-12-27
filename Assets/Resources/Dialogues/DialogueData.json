@@ -1,0 +1,71 @@
+{
+  "dialogues": [
+    {
+      "dialogueId": "dialogue_001",
+      "npcName": "손님7",
+      "defaultPortraitId": "npc7",
+      "lines": [
+        {
+          "speaker": "NPC",
+          "text": "안녕하세요! 계산 부탁드려요.",
+          "portraitId": ""
+        },
+        {
+          "speaker": "PLAYER",
+          "text": "네, 알겠습니다.",
+          "portraitId": ""
+        },
+        {
+          "speaker": "NPC",
+          "text": "고맙소",
+          "portraitId": "npc8"
+        }
+      ]
+    },
+    {
+      "dialogueId": "dialogue_003",
+      "npcName": "손님6",
+      "defaultPortraitId": "npc3",
+      "lines": [
+        {
+          "speaker": "NPC",
+          "text": "빠르게 계산 부탁드려요!",
+          "portraitId": ""
+        },
+        {
+          "speaker": "PLAYER",
+          "text": "네, 최대한 빠르게 해드리겠습니다.",
+          "portraitId": ""
+        },
+        {
+          "speaker": "NPC",
+          "text": "좋아요!",
+          "portraitId": ""
+        }
+      ]
+    },
+    {
+        "dialogueId": "dialogue_004",
+        "npcName": "손님4",
+        "defaultPortraitId": "npc4",
+        "lines": [
+          {
+            "speaker": "NPC",
+            "text": "내가 누군지 아나?",
+            "portraitId": ""
+          },
+          {
+            "speaker": "PLAYER",
+            "text": "몰라요",
+            "portraitId": ""
+          },
+          {
+            "speaker": "NPC",
+            "text": "내가 누군지 몰라?",
+            "portraitId": "npc4-1"
+          }
+        ]
+      }
+  ]
+}
+

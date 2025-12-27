@@ -12,6 +12,6 @@ public class MoneyView : MonoBehaviour
     }
     public void SetMoney(int value)
     {
-        moneyText.text = value.ToString();
+        moneyText.text = "보유 : " + value.ToString() + "원";
     }
 }

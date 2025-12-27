@@ -6,29 +6,35 @@ public class CustomerManager : Singleton<CustomerManager>
 {
     [Header("Customer Image")]
     [SerializeField] private Image customerImage; // 손님 이미지 표시용
-    [SerializeField] private List<Sprite> customerImages = new List<Sprite>(); // 손님 이미지 리스트
     
     [Header("Rest Settings")]
     [SerializeField] private int customersPerRest = 3; // 휴식 주기 (손님 수)
     [SerializeField] private float restDuration = 30f; // 휴식 시간 (초)
     [SerializeField] private GameObject restUIObject; // 휴식 시간 UI 오브젝트
     
-    private int currentCustomerIndex = 0; // 현재 손님 이미지 인덱스
     private int customerCount = -1; // 처리한 손님 수
     
-    // 손님 이미지를 순서대로 변경
-    public void ChangeCustomer()
+    // portraitId에 맞는 손님 이미지 설정
+    public void SetCustomerByPortraitId(string portraitId)
     {
-        if (customerImage == null || customerImages == null || customerImages.Count == 0)
+        if (customerImage == null || string.IsNullOrEmpty(portraitId))
             return;
         
-        // 현재 인덱스의 이미지 설정
-        customerImage.sprite = customerImages[currentCustomerIndex];
-        
-        // 다음 손님을 위해 인덱스 증가 (리스트 끝에 도달하면 처음으로)
-        currentCustomerIndex = (currentCustomerIndex + 1) % customerImages.Count;
-        
-        // 손님 수 증가
+        // Resources에서 portraitId에 맞는 이미지 로드
+        Sprite sprite = PortraitLoader.Load(portraitId);
+        if (sprite != null)
+        {
+            customerImage.sprite = sprite;
+        }
+        else
+        {
+            Debug.LogWarning($"CustomerManager: portraitId '{portraitId}'에 해당하는 이미지를 찾을 수 없습니다.");
+        }
+    }
+    
+    // 손님 수만 증가 (이미지 변경 없이)
+    public void IncrementCustomerCount()
+    {
         customerCount++;
     }
     

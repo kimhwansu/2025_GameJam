@@ -23,6 +23,14 @@ public class MoneyPresenter : MonoBehaviour
         Debug.Log("현재 금액 : " + Model.Money);
     }
 
+    // 돈 감소 (데이터 & UI)
+    public void DeleteMoney(int amount)
+    {
+        Model.Delete(amount);
+        Refresh();
+        Debug.Log("현재 금액 : " + Model.Money);
+    }
+
     public void Refresh()
     {
         view.SetMoney(Model.Money);

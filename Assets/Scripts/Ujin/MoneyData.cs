@@ -2,7 +2,7 @@ public class MoneyData
 {
     public int Money { get; private set; }
 
-    public MoneyData(int initial)
+    public MoneyData(int initial = 0)
     {
         Money = initial;
     }

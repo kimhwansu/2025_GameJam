@@ -1,5 +1,5 @@
 [System.Serializable]
-public class DialogueData
+public class DialogueData // 대화 데이터
 {
     public string dialogueId;
     public string npcName;

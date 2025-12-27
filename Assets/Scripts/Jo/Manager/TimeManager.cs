@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class TimeManager : Singleton<TimeManager>
 {
     [Header("Time Settings")]
-    [SerializeField] private float timeLimit = 20f; // 시간 제한 (초)
+    [SerializeField] private float timeLimit = 15f; // 시간 제한 (초)
     
     [Header("UI")]
     [SerializeField] private Scrollbar timeScrollbar; // 시간 표시용 스크롤바 (100% ~ 0%로 감소)
@@ -69,6 +69,9 @@ public class TimeManager : Singleton<TimeManager>
         {
             timeScrollbar.size = 1f;
         }
+        
+        // 휴식 시간 중 checkoutButton 비활성화
+        SetCheckoutButtonInteractable(false);
     }
     
     public void StopTimer()
@@ -97,6 +100,15 @@ public class TimeManager : Singleton<TimeManager>
         if (CheckoutManager.Instance != null)
         {
             CheckoutManager.Instance.StartCustomer();
+        }
+    }
+    
+    // checkoutButton 상호작용 설정
+    private void SetCheckoutButtonInteractable(bool interactable)
+    {
+        if (CheckoutUI.Instance != null)
+        {
+            CheckoutUI.Instance.SetCheckoutButtonInteractable(interactable);
         }
     }
     

@@ -2,50 +2,18 @@
   "dialogues": [
     {
       "dialogueId": "dialogue_001",
-      "npcName": "손님7",
-      "defaultPortraitId": "npc7",
-      "lines": [
-        {
-          "speaker": "NPC",
-          "text": "안녕하세요! 계산 부탁드려요.",
-          "portraitId": ""
-        },
-        {
-          "speaker": "PLAYER",
-          "text": "네, 알겠습니다.",
-          "portraitId": ""
-        },
-        {
-          "speaker": "NPC",
-          "text": "고맙소",
-          "portraitId": "npc8"
-        }
-      ]
-    },
-    {
-      "dialogueId": "dialogue_003",
       "npcName": "손님6",
-      "defaultPortraitId": "npc3",
+      "defaultPortraitId": "npc6",
       "lines": [
         {
           "speaker": "NPC",
-          "text": "빠르게 계산 부탁드려요!",
-          "portraitId": ""
-        },
-        {
-          "speaker": "PLAYER",
-          "text": "네, 최대한 빠르게 해드리겠습니다.",
-          "portraitId": ""
-        },
-        {
-          "speaker": "NPC",
-          "text": "좋아요!",
+          "text": "나를 '조커'라고 불러줄래요?",
           "portraitId": ""
         }
       ]
     },
     {
-        "dialogueId": "dialogue_004",
+        "dialogueId": "dialogue_002",
         "npcName": "손님4",
         "defaultPortraitId": "npc4",
         "lines": [
@@ -63,6 +31,30 @@
             "speaker": "NPC",
             "text": "내가 누군지 몰라?",
             "portraitId": "npc4-1"
+          }
+        ]
+      },
+      {
+        "dialogueId": "dialogue_003",
+        "npcName": "손님7",
+        "defaultPortraitId": "npc7",
+        "lines": [
+          {
+            "speaker": "NPC",
+            "text": "계산.",
+            "portraitId": ""
+          }
+        ]
+      },
+      {
+        "dialogueId": "dialogue_004",
+        "npcName": "손님1",
+        "defaultPortraitId": "npc1",
+        "lines": [
+          {
+            "speaker": "NPC",
+            "text": "도를 아십니까?",
+            "portraitId": ""
           }
         ]
       }

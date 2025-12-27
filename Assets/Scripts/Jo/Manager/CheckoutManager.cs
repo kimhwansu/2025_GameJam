@@ -24,6 +24,9 @@ public class CheckoutManager : Singleton<CheckoutManager>
 
     private List<ScannableItem> spawnedItems = new();
     [SerializeField] private int total;   // 현재 총합
+    
+    // 현재 사이클에서 사용된 대화 ID 추적
+    private HashSet<string> usedDialogueIds = new HashSet<string>();
  
     private void Start()
     {
@@ -47,7 +50,7 @@ public class CheckoutManager : Singleton<CheckoutManager>
         {
             CustomerManager.Instance.IncrementCustomerCount();
             
-            // 5명마다 휴식 시간 체크
+            // 휴식 시간 체크
             if (CustomerManager.Instance.NeedsRest())
             {
                 StartRestTime();
@@ -71,11 +74,17 @@ public class CheckoutManager : Singleton<CheckoutManager>
     // 랜덤 대화 시작
     private void StartDialogue()
     {
-        // 랜덤으로 대화 데이터 선택
-        DialogueData randomDialogue = DialogueDataLoader.GetRandomDialogue();
+        // 사용된 대화를 제외하고 랜덤으로 대화 데이터 선택
+        DialogueData randomDialogue = DialogueDataLoader.GetRandomDialogueExcluding(usedDialogueIds);
         
         if (randomDialogue != null && DialogueManager.Instance != null)
         {
+            // 사용된 대화 ID 추가
+            if (!string.IsNullOrEmpty(randomDialogue.dialogueId))
+            {
+                usedDialogueIds.Add(randomDialogue.dialogueId);
+            }
+            
             // 대화의 defaultPortraitId에 맞는 손님 이미지 설정
             if (CustomerManager.Instance != null && !string.IsNullOrEmpty(randomDialogue.defaultPortraitId))
             {
@@ -86,6 +95,9 @@ public class CheckoutManager : Singleton<CheckoutManager>
             
             // 대화 종료 콜백 설정
             DialogueManager.Instance.OnDialogueEnd = OnDialogueEnd;
+            
+            // 대화 시작과 동시에 라운드 시작
+            StartCustomerRound();
             
             // 대화 시작
             DialogueManager.Instance.StartDialogue(randomDialogue);
@@ -100,8 +112,7 @@ public class CheckoutManager : Singleton<CheckoutManager>
     // 대화 종료 시 호출
     private void OnDialogueEnd()
     {
-        // 대화 종료 후 라운드 시작 (초상화는 유지됨)
-        StartCustomerRound();
+        // 대화 종료만 처리 (라운드는 이미 진행 중)
     }
     
     // 일반 손님 처리 시작
@@ -122,6 +133,12 @@ public class CheckoutManager : Singleton<CheckoutManager>
         checkoutUi.ClearList(); // UI 리스트 초기화
         checkoutUi.SetTotal(0); // 총합 초기화
         
+        // 라운드 시작 시 checkoutButton 활성화 (대화가 끝나고 라운드가 시작될 때)
+        if (CheckoutUI.Instance != null)
+        {
+            CheckoutUI.Instance.SetCheckoutButtonInteractable(true);
+        }
+        
         // 시간 제한 시작
         if (TimeManager.Instance != null)
         {
@@ -137,9 +154,13 @@ public class CheckoutManager : Singleton<CheckoutManager>
         // 라운드 초기화 (아이템 제거)
         ClearRound();
         
-        // 손님 이미지 비활성화
+        // 사용된 대화 ID 초기화 (새 사이클 시작)
+        usedDialogueIds.Clear();
+        
+        // 사이클 초기화
         if (CustomerManager.Instance != null)
         {
+            CustomerManager.Instance.ResetCycle();
             CustomerManager.Instance.HideCustomerImage();
         }
         

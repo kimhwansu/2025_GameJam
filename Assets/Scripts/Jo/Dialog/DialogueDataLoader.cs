@@ -67,6 +67,41 @@ public static class DialogueDataLoader
         return dialogues[randomIndex];
     }
     
+    // 사용된 대화 ID를 제외하고 랜덤 대화 데이터 가져오기
+    public static DialogueData GetRandomDialogueExcluding(HashSet<string> usedDialogueIds)
+    {
+        List<DialogueData> dialogues = LoadDialogues();
+        
+        if (dialogues == null || dialogues.Count == 0)
+        {
+            return null;
+        }
+        
+        // 사용되지 않은 대화만 필터링
+        List<DialogueData> availableDialogues = new List<DialogueData>();
+        foreach (var dialogue in dialogues)
+        {
+            if (usedDialogueIds == null || !usedDialogueIds.Contains(dialogue.dialogueId))
+            {
+                availableDialogues.Add(dialogue);
+            }
+        }
+        
+        // 사용 가능한 대화가 없으면 모든 대화에서 선택 (사이클 재시작)
+        if (availableDialogues.Count == 0)
+        {
+            availableDialogues = dialogues;
+        }
+        
+        if (availableDialogues.Count == 0)
+        {
+            return null;
+        }
+        
+        int randomIndex = Random.Range(0, availableDialogues.Count);
+        return availableDialogues[randomIndex];
+    }
+    
     // 특정 ID로 대화 데이터 가져오기
     public static DialogueData GetDialogueById(string dialogueId)
     {

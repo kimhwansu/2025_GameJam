@@ -7,7 +7,8 @@ public class DialogueManager : Singleton<DialogueManager>
     [Header("UI")]
     [SerializeField] private GameObject dialogueUIObject; // 대화 UI 오브젝트
     public Image portraitImage;
-    public Text dialogueText;
+    public Text nameText; // 이름 표시용 Text
+    public Text dialogueText; // 대사 표시용 Text
 
     private DialogueData data;
     private int index;
@@ -35,12 +36,15 @@ public class DialogueManager : Singleton<DialogueManager>
             dialogueUIObject.SetActive(true);
         }
 
+        // 대화 시작 시 checkoutButton 비활성화
+        SetCheckoutButtonInteractable(false);
+
         // 기본 초상화
         SetPortrait(data.defaultPortraitId);
         ShowLine();
     }
 
-    public void Next()
+    public void Next() // 다음 대화 호출
     {
         index++;
         if (index >= data.lines.Length)
@@ -76,7 +80,15 @@ public class DialogueManager : Singleton<DialogueManager>
             name = line.speaker;
         }
 
-        dialogueText.text = $"{name}: {line.text}";
+        // 이름과 대사를 별도로 표시
+        if (nameText != null)
+        {
+            nameText.text = name;
+        }
+        if (dialogueText != null)
+        {
+            dialogueText.text = line.text;
+        }
     }
 
     void SetPortrait(string id)
@@ -96,8 +108,26 @@ public class DialogueManager : Singleton<DialogueManager>
             dialogueUIObject.SetActive(false);
         }
         
+        // 대화 종료 시 checkoutButton 활성화
+        SetCheckoutButtonInteractable(true);
+        
         // 대화 종료 콜백 호출
         OnDialogueEnd?.Invoke();
+    }
+    
+    // 대화 활성화 상태 확인
+    public bool IsDialogueActive()
+    {
+        return dialogueUIObject != null && dialogueUIObject.activeSelf;
+    }
+    
+    // checkoutButton 상호작용 설정
+    private void SetCheckoutButtonInteractable(bool interactable)
+    {
+        if (CheckoutUI.Instance != null)
+        {
+            CheckoutUI.Instance.SetCheckoutButtonInteractable(interactable);
+        }
     }
 }
 

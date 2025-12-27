@@ -8,11 +8,12 @@ public class CustomerManager : Singleton<CustomerManager>
     [SerializeField] private Image customerImage; // 손님 이미지 표시용
     
     [Header("Rest Settings")]
-    [SerializeField] private int customersPerRest = 3; // 휴식 주기 (손님 수)
+    [SerializeField] private int customersPerRest = 5; // 휴식 주기 (손님 수)
     [SerializeField] private float restDuration = 30f; // 휴식 시간 (초)
     [SerializeField] private GameObject restUIObject; // 휴식 시간 UI 오브젝트
     
-    private int customerCount = -1; // 처리한 손님 수
+    private int customerCount = 0; // 처리한 손님 수 (전체 누적)
+    private int cycleCustomerCount = 0; // 현재 사이클에서 처리한 손님 수
     
     // portraitId에 맞는 손님 이미지 설정
     public void SetCustomerByPortraitId(string portraitId)
@@ -36,6 +37,7 @@ public class CustomerManager : Singleton<CustomerManager>
     public void IncrementCustomerCount()
     {
         customerCount++;
+        cycleCustomerCount++;
     }
     
     // 손님 수 반환
@@ -47,8 +49,15 @@ public class CustomerManager : Singleton<CustomerManager>
     // 휴식이 필요한지 확인
     public bool NeedsRest()
     {
-        Debug.Log(customerCount);
-        return customerCount > 0 && customerCount % customersPerRest == 0;
+        // 현재 사이클에서 처리한 손님 수가 휴식 주기와 같으면 휴식 필요
+        Debug.Log(cycleCustomerCount);
+        return cycleCustomerCount >= customersPerRest;
+    }
+    
+    // 사이클 초기화 (휴식 시간 후 호출)
+    public void ResetCycle()
+    {
+        cycleCustomerCount = 0; // 새 사이클 시작
     }
     
     // 휴식 시간 반환

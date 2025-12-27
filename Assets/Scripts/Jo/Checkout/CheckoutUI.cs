@@ -6,7 +6,7 @@ using UnityEngine.UI;
 /// 포스기 전체 UI 갱신 담당
 /// </summary>
 
-public class CheckoutUI : MonoBehaviour
+public class CheckoutUI : Singleton<CheckoutUI>
 {
     [SerializeField] private Transform listParent;  // 프리팹 생성될 위치 
     [SerializeField] private GameObject linePrefab; // (아이콘, 이름, 가격) UI 프리팹
@@ -175,6 +175,15 @@ public class CheckoutUI : MonoBehaviour
         {
             checkoutButton.onClick.RemoveAllListeners();
             checkoutButton.onClick.AddListener(() => onClick?.Invoke());
+        }
+    }
+    
+    /// 결제 버튼 상호작용 설정 (DialogueManager에서 호출)
+    public void SetCheckoutButtonInteractable(bool interactable)
+    {
+        if (checkoutButton != null)
+        {
+            checkoutButton.interactable = interactable;
         }
     }
 }

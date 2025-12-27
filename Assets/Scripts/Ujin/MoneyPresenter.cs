@@ -28,7 +28,6 @@ public class MoneyPresenter : MonoBehaviour
     {
         Model.Delete(amount);
         Refresh();
-        Debug.Log("현재 금액 : " + Model.Money);
     }
 
     public void Refresh()

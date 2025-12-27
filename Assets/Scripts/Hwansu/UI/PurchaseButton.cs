@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class PurchaseButton : MonoBehaviour
 {
@@ -21,26 +22,24 @@ public class PurchaseButton : MonoBehaviour
 
     private int itemPrice;
     private bool isPurchased = false;
-    private string itemID; // 고유 아이템 ID 
+    private string itemID;
+    private static int totalPurchaseCount = 0; // 전체 구매 횟수 (static으로 모든 버튼이 공유)
+
+    // 구매 완료 시 발생하는 이벤트
+    public static event Action OnPurchaseCompleted;
 
     void Start()
     {
-        // 아이템 ID 생성
         itemID = $"{itemCategory}_{itemNumber}";
-
-        // 번호에 따른 가격 설정
         SetPriceByNumber();
 
-        // 구매 버튼 클릭 이벤트
         if (purchaseButton != null)
         {
             purchaseButton.onClick.AddListener(OnPurchaseButtonClicked);
         }
 
-        // 초기 UI 업데이트
         UpdateUI();
 
-        // 골드 변경 이벤트 구독
         if (GoldManager.Instance != null)
         {
             GoldManager.Instance.OnGoldChanged += CheckAffordable;
@@ -57,13 +56,12 @@ public class PurchaseButton : MonoBehaviour
 
     private void SetPriceByNumber()
     {
-        // 번호에 따른 가격 설정
         itemPrice = itemNumber switch
         {
             1 => 12000,
             2 => 14000,
             3 => 16000,
-            _ => 12000 + (itemNumber - 1) * 2000 // 4번 이상은 2000원씩 증가
+            _ => 12000 + (itemNumber - 1) * 2000
         };
     }
 
@@ -75,10 +73,12 @@ public class PurchaseButton : MonoBehaviour
         if (GoldManager.Instance.UseGold(itemPrice))
         {
             isPurchased = true;
+            totalPurchaseCount++; // 구매 카운트 증가
             UpdateUI();
-
-            // 구매 완료 후 추가 로직
             OnItemPurchased();
+
+            // 구매 완료 이벤트 발생
+            OnPurchaseCompleted?.Invoke();
         }
         else
         {
@@ -90,7 +90,6 @@ public class PurchaseButton : MonoBehaviour
     {
         if (isPurchased)
         {
-            // 구매 완료 상태
             if (purchaseButtonText != null)
                 purchaseButtonText.text = "구매완료";
 
@@ -99,7 +98,6 @@ public class PurchaseButton : MonoBehaviour
         }
         else
         {
-            // 구매 전 상태 - 가격 표시
             if (purchaseButtonText != null)
                 purchaseButtonText.text = $"{itemPrice:N0}";
 
@@ -123,25 +121,21 @@ public class PurchaseButton : MonoBehaviour
 
     private void OnItemPurchased()
     {
-        // 구매된 아이템 처리
         switch (itemCategory)
         {
             case ItemCategory.Cloth:
-                // 옷 아이템 지급 - 스킨 변경
                 if (CharacterSkinManager.Instance != null)
                 {
                     CharacterSkinManager.Instance.ChangeClothSkin(itemNumber);
                 }
                 break;
             case ItemCategory.BG:
-                // 배경 아이템 지급 - 배경 변경
                 if (BackgroundManager.Instance != null)
                 {
                     BackgroundManager.Instance.ChangeBackground(itemNumber);
                 }
                 break;
             case ItemCategory.Effect:
-                // 이펙트 아이템 지급 - 이펙트 변경
                 if (EffectManager.Instance != null)
                 {
                     EffectManager.Instance.ChangeEffect(itemNumber);
@@ -150,7 +144,18 @@ public class PurchaseButton : MonoBehaviour
         }
     }
 
-    // 외부에서 구매 상태 확인용
+    // 전체 구매 횟수 반환
+    public static int GetTotalPurchaseCount()
+    {
+        return totalPurchaseCount;
+    }
+
+    // 전체 구매 횟수 초기화 (게임 시작 시 또는 리셋 시 사용)
+    public static void ResetTotalPurchaseCount()
+    {
+        totalPurchaseCount = 0;
+    }
+
     public bool IsPurchased()
     {
         return isPurchased;

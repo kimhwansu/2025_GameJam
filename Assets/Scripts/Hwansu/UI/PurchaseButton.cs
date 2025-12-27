@@ -13,34 +13,23 @@ public class PurchaseButton : MonoBehaviour
 
     [Header("Item Settings")]
     [SerializeField] private ItemCategory itemCategory = ItemCategory.Cloth;
-    [SerializeField] private int itemNumber = 1; // 1, 2, 3...
+    [SerializeField] private int itemNumber = 1; // 1, 2, 3
 
     [Header("UI References")]
     [SerializeField] private Button purchaseButton;
     [SerializeField] private TextMeshProUGUI purchaseButtonText;
-    [SerializeField] private Button priceButton;
-    [SerializeField] private TextMeshProUGUI priceButtonText;
 
     private int itemPrice;
     private bool isPurchased = false;
-    private string itemID; // 고유 아이템 ID (예: "Cloth_1", "BG_2")
+    private string itemID; // 고유 아이템 ID 
 
     void Start()
     {
         // 아이템 ID 생성
         itemID = $"{itemCategory}_{itemNumber}";
 
-        // 타입에 따른 가격 설정
-        SetPriceByType();
-
-        // 가격 버튼 설정
-        if (priceButton != null)
-        {
-            priceButton.interactable = false;
-            ColorBlock colors = priceButton.colors;
-            colors.disabledColor = colors.normalColor;
-            priceButton.colors = colors;
-        }
+        // 번호에 따른 가격 설정
+        SetPriceByNumber();
 
         // 구매 버튼 클릭 이벤트
         if (purchaseButton != null)
@@ -66,19 +55,16 @@ public class PurchaseButton : MonoBehaviour
         }
     }
 
-    private void SetPriceByType()
+    private void SetPriceByNumber()
     {
-        // 카테고리별 기본 가격
-        int basePrice = itemCategory switch
+        // 번호에 따른 가격 설정
+        itemPrice = itemNumber switch
         {
-            ItemCategory.Cloth => 10000,
-            ItemCategory.BG => 15000,
-            ItemCategory.Effect => 20000,
-            _ => 10000
+            1 => 12000,
+            2 => 14000,
+            3 => 16000,
+            _ => 12000 + (itemNumber - 1) * 2000 // 4번 이상은 2000원씩 증가
         };
-
-        // 번호에 따른 추가 가격
-        itemPrice = basePrice + (itemNumber - 1) * 2000;
     }
 
     private void OnPurchaseButtonClicked()
@@ -91,8 +77,6 @@ public class PurchaseButton : MonoBehaviour
             isPurchased = true;
             UpdateUI();
 
-            Debug.Log($"{itemCategory} {itemNumber}번 아이템 구매 완료! (가격: {itemPrice})");
-
             // 구매 완료 후 추가 로직
             OnItemPurchased();
         }
@@ -104,13 +88,9 @@ public class PurchaseButton : MonoBehaviour
 
     private void UpdateUI()
     {
-        if (priceButtonText != null)
-        {
-            priceButtonText.text = $"{itemPrice:N0} Gold";
-        }
-
         if (isPurchased)
         {
+            // 구매 완료 상태
             if (purchaseButtonText != null)
                 purchaseButtonText.text = "구매완료";
 
@@ -119,8 +99,9 @@ public class PurchaseButton : MonoBehaviour
         }
         else
         {
+            // 구매 전 상태 - 가격 표시
             if (purchaseButtonText != null)
-                purchaseButtonText.text = "구매하기";
+                purchaseButtonText.text = $"{itemPrice:N0} Coin";
 
             CheckAffordable();
         }
@@ -151,7 +132,6 @@ public class PurchaseButton : MonoBehaviour
                 {
                     CharacterSkinManager.Instance.ChangeClothSkin(itemNumber);
                 }
-                Debug.Log($"옷 {itemNumber}번 지급 및 스킨 변경");
                 break;
             case ItemCategory.BG:
                 // 배경 아이템 지급 - 배경 변경
@@ -159,7 +139,6 @@ public class PurchaseButton : MonoBehaviour
                 {
                     BackgroundManager.Instance.ChangeBackground(itemNumber);
                 }
-                Debug.Log($"배경 {itemNumber}번 지급 및 변경");
                 break;
             case ItemCategory.Effect:
                 // 이펙트 아이템 지급 - 이펙트 변경
@@ -167,7 +146,6 @@ public class PurchaseButton : MonoBehaviour
                 {
                     EffectManager.Instance.ChangeEffect(itemNumber);
                 }
-                Debug.Log($"이펙트 {itemNumber}번 지급 및 변경");
                 break;
         }
     }

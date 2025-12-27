@@ -146,8 +146,12 @@ public class PurchaseButton : MonoBehaviour
         switch (itemCategory)
         {
             case ItemCategory.Cloth:
-                // 옷 아이템 지급 로직
-                Debug.Log($"옷 {itemNumber}번 지급");
+                // 옷 아이템 지급 - 스킨 변경
+                if (CharacterSkinManager.Instance != null)
+                {
+                    CharacterSkinManager.Instance.ChangeClothSkin(itemNumber);
+                }
+                Debug.Log($"옷 {itemNumber}번 지급 및 스킨 변경");
                 break;
             case ItemCategory.BG:
                 // 배경 아이템 지급 로직

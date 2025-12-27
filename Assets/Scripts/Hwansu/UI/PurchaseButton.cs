@@ -154,8 +154,12 @@ public class PurchaseButton : MonoBehaviour
                 Debug.Log($"옷 {itemNumber}번 지급 및 스킨 변경");
                 break;
             case ItemCategory.BG:
-                // 배경 아이템 지급 로직
-                Debug.Log($"배경 {itemNumber}번 지급");
+                // 배경 아이템 지급 - 배경 변경
+                if (BackgroundManager.Instance != null)
+                {
+                    BackgroundManager.Instance.ChangeBackground(itemNumber);
+                }
+                Debug.Log($"배경 {itemNumber}번 지급 및 변경");
                 break;
             case ItemCategory.Effect:
                 // 이펙트 아이템 지급 로직

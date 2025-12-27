@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4256486354005236236}
   - component: {fileID: 8405677979621319}
   - component: {fileID: 4698816918245570759}
+  - component: {fileID: 4772738781104883604}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -89,3 +90,27 @@ MonoBehaviour:
   statButton: {fileID: 0}
   costumeButton: {fileID: 0}
   cashButton: {fileID: 0}
+--- !u!114 &4772738781104883604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987301017661303013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7119e16b1cb21a04dad178e8e0434bcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bg1:
+    backgroundObject1: {fileID: 0}
+    backgroundObject2: {fileID: 0}
+  bg2:
+    backgroundObject1: {fileID: 0}
+    backgroundObject2: {fileID: 0}
+  bg3:
+    backgroundObject1: {fileID: 0}
+    backgroundObject2: {fileID: 0}
+  bg4:
+    backgroundObject1: {fileID: 0}
+    backgroundObject2: {fileID: 0}

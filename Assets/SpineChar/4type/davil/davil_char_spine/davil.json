@@ -1,0 +1,109 @@
+{ "skeleton": { "images": "F:/work/2025_deepdive/davil/davil_char_spine/" },
+"PhotoshopToSpine": { "scale": 1, "padding": 1, "trim": true },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "backhair", "bone": "root", "attachment": "backhair" },
+	{ "name": "acc", "bone": "root", "attachment": "acc" },
+	{ "name": "right_arm_up", "bone": "root", "attachment": "right_arm_up" },
+	{ "name": "right_arm_down", "bone": "root", "attachment": "right_arm_down" },
+	{ "name": "right_hand", "bone": "root", "attachment": "right_hand" },
+	{ "name": "magicwand", "bone": "root", "attachment": "magicwand" },
+	{ "name": "right_leg_up", "bone": "root", "attachment": "right_leg_up" },
+	{ "name": "right_leg_down", "bone": "root", "attachment": "right_leg_down" },
+	{ "name": "right_cloth_up", "bone": "root", "attachment": "right_cloth_up" },
+	{ "name": "body", "bone": "root", "attachment": "body" },
+	{ "name": "left_leg_up", "bone": "root", "attachment": "left_leg_up" },
+	{ "name": "left_leg_down", "bone": "root", "attachment": "left_leg_down" },
+	{ "name": "shoes", "bone": "root", "attachment": "shoes" },
+	{ "name": "under", "bone": "root", "attachment": "under" },
+	{ "name": "left_arm_up", "bone": "root", "attachment": "left_arm_up" },
+	{ "name": "left_arm_down", "bone": "root", "attachment": "left_arm_down" },
+	{ "name": "lefthand", "bone": "root", "attachment": "lefthand" },
+	{ "name": "top", "bone": "root", "attachment": "top" },
+	{ "name": "left_cloth_up", "bone": "root", "attachment": "left_cloth_up" },
+	{ "name": "righthair", "bone": "root", "attachment": "righthair" },
+	{ "name": "head", "bone": "root", "attachment": "head" },
+	{ "name": "fronthair", "bone": "root", "attachment": "fronthair" },
+	{ "name": "lafthair", "bone": "root", "attachment": "lafthair" },
+	{ "name": "face", "bone": "root", "attachment": "face" },
+],
+"skins": {
+	"default": {
+		"backhair": {
+			"backhair": { "x": 512.5, "y": -262, "width": 441, "height": 342 }
+		},
+		"acc": {
+			"acc": { "x": 507.5, "y": -553, "width": 495, "height": 124 }
+		},
+		"right_arm_up": {
+			"right_arm_up": { "x": 579, "y": -424.5, "width": 88, "height": 161 }
+		},
+		"right_arm_down": {
+			"right_arm_down": { "x": 624.5, "y": -539.5, "width": 95, "height": 159 }
+		},
+		"right_hand": {
+			"right_hand": { "x": 673, "y": -622.5, "width": 66, "height": 75 }
+		},
+		"magicwand": {
+			"magicwand": { "x": 591.5, "y": -647.5, "width": 987, "height": 521 }
+		},
+		"right_leg_up": {
+			"right_leg_up": { "x": 546, "y": -675.5, "width": 114, "height": 279 }
+		},
+		"right_leg_down": {
+			"right_leg_down": { "x": 578.5, "y": -900.5, "width": 87, "height": 327 }
+		},
+		"right_cloth_up": {
+			"right_cloth_up": { "x": 572.5, "y": -414.5, "width": 75, "height": 77 }
+		},
+		"body": {
+			"body": { "x": 507, "y": -460, "width": 164, "height": 384 }
+		},
+		"left_leg_up": {
+			"left_leg_up": { "x": 463.5, "y": -678, "width": 97, "height": 274 }
+		},
+		"left_leg_down": {
+			"left_leg_down": { "x": 412, "y": -900, "width": 138, "height": 304 }
+		},
+		"shoes": {
+			"shoes": { "x": 485, "y": -859, "width": 284, "height": 430 }
+		},
+		"under": {
+			"under": { "x": 422, "y": -636, "width": 558, "height": 308 }
+		},
+		"left_arm_up": {
+			"left_arm_up": { "x": 428, "y": -426.5, "width": 88, "height": 165 }
+		},
+		"left_arm_down": {
+			"left_arm_down": { "x": 382.5, "y": -539.5, "width": 95, "height": 159 }
+		},
+		"lefthand": {
+			"lefthand": { "x": 339.5, "y": -632, "width": 59, "height": 98 }
+		},
+		"top": {
+			"top": { "x": 524, "y": -415, "width": 152, "height": 214 }
+		},
+		"left_cloth_up": {
+			"left_cloth_up": { "x": 432, "y": -416, "width": 78, "height": 92 }
+		},
+		"righthair": {
+			"righthair": { "x": 620.5, "y": -187, "width": 81, "height": 154 }
+		},
+		"head": {
+			"head": { "x": 505.5, "y": -195.5, "width": 259, "height": 255 }
+		},
+		"fronthair": {
+			"fronthair": { "x": 513, "y": -142, "width": 262, "height": 176 }
+		},
+		"lafthair": {
+			"lafthair": { "x": 506, "y": -182, "width": 178, "height": 168 }
+		},
+		"face": {
+			"face": { "x": 551, "y": -238.5, "width": 174, "height": 121 }
+		}
+	}
+},
+"animations": { "animation": {} }
+}

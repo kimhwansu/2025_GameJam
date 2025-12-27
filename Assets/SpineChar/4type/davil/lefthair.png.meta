@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 8915d62ef73720045b57b66c171d50be
+guid: 000c1afd46aa02c4386dc8ed4e70954c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4609764937589784581
-    second: shoes_0
+      213: 3022024519801352976
+    second: lefthair_0
   - first:
-      213: -653813295066310515
-    second: shoes_1
+      213: 7974249538065744473
+    second: lefthair_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +49,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -103,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: shoes_0
+      name: lefthair_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 3
-        width: 133
-        height: 284
+        y: 0
+        width: 76
+        height: 168
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,20 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bfff8ec7633d600c0800000000000000
-      internalID: -4609764937589784581
+      spriteID: 013b7451a4360f920800000000000000
+      internalID: 3022024519801352976
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: shoes_1
+      name: lefthair_1
       rect:
         serializedVersion: 2
-        x: 196
-        y: 0
-        width: 92
-        height: 269
+        x: 163
+        y: 39
+        width: 15
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d88152ea5403de6f0800000000000000
-      internalID: -653813295066310515
+      spriteID: 9524bba94b93aae60800000000000000
+      internalID: 7974249538065744473
       vertices: []
       indices: 
       edges: []
@@ -150,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      shoes_0: -4609764937589784581
-      shoes_1: -653813295066310515
+      lefthair_0: 3022024519801352976
+      lefthair_1: 7974249538065744473
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

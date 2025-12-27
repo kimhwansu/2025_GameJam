@@ -106,12 +106,12 @@ TextureImporter:
       name: shoes_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 3
-        width: 161
-        height: 365
+        x: 1
+        y: 5
+        width: 287
+        height: 363
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -128,12 +128,12 @@ TextureImporter:
       name: shoes_1
       rect:
         serializedVersion: 2
-        x: 193
-        y: 0
-        width: 95
-        height: 359
+        x: 194
+        y: 1
+        width: 93
+        height: 357
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -150,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: be8d783e0463707438da1700595d15b4
     internalID: 0
     vertices: []
     indices: 

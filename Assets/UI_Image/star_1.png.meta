@@ -5,9 +5,6 @@ TextureImporter:
   - first:
       213: 5757424183096077452
     second: star_1_0
-  - first:
-      213: 1466629744803851079
-    second: star_1_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -108,7 +105,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 185
+        width: 559
         height: 134
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -120,28 +117,6 @@ TextureImporter:
       bones: []
       spriteID: c8c6fa65aca76ef40800000000000000
       internalID: 5757424183096077452
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: star_1_1
-      rect:
-        serializedVersion: 2
-        x: 396
-        y: 0
-        width: 163
-        height: 107
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 74b2e0c7bf38a5410800000000000000
-      internalID: 1466629744803851079
       vertices: []
       indices: 
       edges: []
@@ -161,7 +136,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       star_1_0: 5757424183096077452
-      star_1_1: 1466629744803851079
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

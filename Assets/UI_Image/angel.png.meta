@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 813bddd10e2c4714f9a855eeff634c2a
+guid: 5ea6310d0a197cb4681e265c84bdaf82
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6824254720434309553
-    second: basic_12_0
-  - first:
-      213: 7974081048070339650
-    second: basic_12_1
+      213: 8186489078436091987
+    second: angel_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: basic_12_0
+      name: angel_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 198
-        height: 135
+        width: 559
+        height: 467
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,30 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1b90544038f94be50800000000000000
-      internalID: 6824254720434309553
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: basic_12_1
-      rect:
-        serializedVersion: 2
-        x: 238
-        y: 0
-        width: 321
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 24c3868f670a9ae60800000000000000
-      internalID: 7974081048070339650
+      spriteID: 3585cc561704c9170800000000000000
+      internalID: 8186489078436091987
       vertices: []
       indices: 
       edges: []
@@ -150,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      basic_12_0: 6824254720434309553
-      basic_12_1: 7974081048070339650
+      angel_0: 8186489078436091987
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

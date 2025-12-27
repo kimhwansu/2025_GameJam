@@ -4,34 +4,45 @@ using TMPro;
 
 public class PurchaseButton : MonoBehaviour
 {
+    public enum ItemCategory
+    {
+        Cloth,
+        BG,
+        Effect
+    }
+
     [Header("Item Settings")]
-    [SerializeField] private int itemType = 1; // 1, 2, 3
+    [SerializeField] private ItemCategory itemCategory = ItemCategory.Cloth;
+    [SerializeField] private int itemNumber = 1; // 1, 2, 3...
 
     [Header("UI References")]
-    [SerializeField] private Button purchaseButton; // 구매 버튼 (스크립트 있음)
-    [SerializeField] private TextMeshProUGUI purchaseButtonText; // 구매 버튼의 TMP (구매하기/구매완료)
-    [SerializeField] private Button priceButton; // 가격 표시 버튼 (스크립트 없음, 클릭 불가)
-    [SerializeField] private TextMeshProUGUI priceButtonText; // 가격 버튼의 TMP (가격 표시)
+    [SerializeField] private Button purchaseButton;
+    [SerializeField] private TextMeshProUGUI purchaseButtonText;
+    [SerializeField] private Button priceButton;
+    [SerializeField] private TextMeshProUGUI priceButtonText;
 
     private int itemPrice;
     private bool isPurchased = false;
+    private string itemID; // 고유 아이템 ID (예: "Cloth_1", "BG_2")
 
     void Start()
     {
+        // 아이템 ID 생성
+        itemID = $"{itemCategory}_{itemNumber}";
+
         // 타입에 따른 가격 설정
         SetPriceByType();
 
-        // 가격 버튼은 클릭 불가로 설정 (배경색은 유지)
+        // 가격 버튼 설정
         if (priceButton != null)
         {
             priceButton.interactable = false;
-            // ColorBlock을 사용하여 비활성화 색상을 일반 색상과 동일하게 설정
             ColorBlock colors = priceButton.colors;
             colors.disabledColor = colors.normalColor;
             priceButton.colors = colors;
         }
 
-        // 구매 버튼 클릭 이벤트 연결
+        // 구매 버튼 클릭 이벤트
         if (purchaseButton != null)
         {
             purchaseButton.onClick.AddListener(OnPurchaseButtonClicked);
@@ -49,7 +60,6 @@ public class PurchaseButton : MonoBehaviour
 
     void OnDestroy()
     {
-        // 이벤트 구독 해제
         if (GoldManager.Instance != null)
         {
             GoldManager.Instance.OnGoldChanged -= CheckAffordable;
@@ -58,22 +68,17 @@ public class PurchaseButton : MonoBehaviour
 
     private void SetPriceByType()
     {
-        switch (itemType)
+        // 카테고리별 기본 가격
+        int basePrice = itemCategory switch
         {
-            case 1:
-                itemPrice = 12000;
-                break;
-            case 2:
-                itemPrice = 14000;
-                break;
-            case 3:
-                itemPrice = 16000;
-                break;
-            default:
-                itemPrice = 12000;
-                Debug.LogWarning($"잘못된 itemType: {itemType}. 기본값 12000으로 설정됩니다.");
-                break;
-        }
+            ItemCategory.Cloth => 10000,
+            ItemCategory.BG => 15000,
+            ItemCategory.Effect => 20000,
+            _ => 10000
+        };
+
+        // 번호에 따른 추가 가격
+        itemPrice = basePrice + (itemNumber - 1) * 2000;
     }
 
     private void OnPurchaseButtonClicked()
@@ -81,28 +86,24 @@ public class PurchaseButton : MonoBehaviour
         if (isPurchased)
             return;
 
-        // 골드 확인 및 차감
         if (GoldManager.Instance.UseGold(itemPrice))
         {
-            // 구매 성공
             isPurchased = true;
             UpdateUI();
 
-            Debug.Log($"타입 {itemType} 아이템 구매 완료! (가격: {itemPrice})");
+            Debug.Log($"{itemCategory} {itemNumber}번 아이템 구매 완료! (가격: {itemPrice})");
 
-            // 여기에 구매 완료 후 추가 로직 작성
-            // 예: 아이템 지급, 사운드 재생 등
+            // 구매 완료 후 추가 로직
+            OnItemPurchased();
         }
         else
         {
-            // 골드 부족
             ShowInsufficientGoldFeedback();
         }
     }
 
     private void UpdateUI()
     {
-        // 가격 버튼은 항상 가격 표시
         if (priceButtonText != null)
         {
             priceButtonText.text = $"{itemPrice:N0} Gold";
@@ -110,7 +111,6 @@ public class PurchaseButton : MonoBehaviour
 
         if (isPurchased)
         {
-            // 구매 완료 상태
             if (purchaseButtonText != null)
                 purchaseButtonText.text = "구매완료";
 
@@ -119,7 +119,6 @@ public class PurchaseButton : MonoBehaviour
         }
         else
         {
-            // 구매 가능 상태
             if (purchaseButtonText != null)
                 purchaseButtonText.text = "구매하기";
 
@@ -132,14 +131,53 @@ public class PurchaseButton : MonoBehaviour
         if (isPurchased || purchaseButton == null)
             return;
 
-        // 현재 골드로 구매 가능한지 확인
         bool canAfford = GoldManager.Instance.Gold >= itemPrice;
         purchaseButton.interactable = canAfford;
     }
 
     private void ShowInsufficientGoldFeedback()
     {
-        // 골드 부족 피드백
         Debug.Log("골드가 부족합니다!");
+    }
+
+    private void OnItemPurchased()
+    {
+        // 구매된 아이템 처리
+        switch (itemCategory)
+        {
+            case ItemCategory.Cloth:
+                // 옷 아이템 지급 로직
+                Debug.Log($"옷 {itemNumber}번 지급");
+                break;
+            case ItemCategory.BG:
+                // 배경 아이템 지급 로직
+                Debug.Log($"배경 {itemNumber}번 지급");
+                break;
+            case ItemCategory.Effect:
+                // 이펙트 아이템 지급 로직
+                Debug.Log($"이펙트 {itemNumber}번 지급");
+                break;
+        }
+    }
+
+    // 외부에서 구매 상태 확인용
+    public bool IsPurchased()
+    {
+        return isPurchased;
+    }
+
+    public string GetItemID()
+    {
+        return itemID;
+    }
+
+    public ItemCategory GetCategory()
+    {
+        return itemCategory;
+    }
+
+    public int GetItemNumber()
+    {
+        return itemNumber;
     }
 }

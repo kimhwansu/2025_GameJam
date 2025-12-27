@@ -882,7 +882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleGroup: {fileID: 844190202}
   startButton: {fileID: 498306304}
-  targetSceneName: Main
+  targetSceneName: Ingame
   fadeDuration: 1
 --- !u!4 &1751055339
 Transform:

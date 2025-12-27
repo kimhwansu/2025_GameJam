@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using System;
 
 /// <summary>
@@ -9,9 +10,9 @@ using System;
 public class CheckoutUILine : MonoBehaviour
 {
     [SerializeField] private Image iconImage;
-    [SerializeField] private Text nameText;
-    [SerializeField] private Text priceText;
-    [SerializeField] private Text countText;
+    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI priceText;
+    [SerializeField] private TextMeshProUGUI countText;
     [SerializeField] private Button cancelButton;   // 삭제 버튼 
     [SerializeField] private Button increaseButton; // 수량 증가 버튼
     [SerializeField] private Button decreaseButton; // 수량 감소 버튼

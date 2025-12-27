@@ -29,6 +29,7 @@ public class ScannableItem : MonoBehaviour, IClickable
 
     private void TryScan()
     {
+        Debug.Log("TryScan");
         if (CheckoutManager.Instance == null)
         {
             Debug.LogWarning("[ScannableItem] CheckoutManager.Instance is null");

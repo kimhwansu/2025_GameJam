@@ -50,7 +50,7 @@ public class ResultTextUIManager : Singleton<ResultTextUIManager>
         resultText.gameObject.SetActive(true);
         
         // 텍스트 설정
-        resultText.text = isSuccess ? "성공!" : "실패(패널티 -1000)";
+        resultText.text = isSuccess ? "성공!" : "실패";
         
         // 색상 설정
         resultText.color = isSuccess ? successColor : failColor;

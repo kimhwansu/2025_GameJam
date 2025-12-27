@@ -42,8 +42,6 @@ public class Monster : MonoBehaviour
         maxHealth = Mathf.Max(1, maxHealth - totalMaxCount);
         currentHealth = maxHealth;
 
-        Debug.Log($"몬스터 생성 - 총 MAX 카운트: {totalMaxCount}, 최대 체력: {maxHealth}");
-
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
             playerTransform = player.transform;
@@ -73,8 +71,6 @@ public class Monster : MonoBehaviour
         {
             currentHealth = maxHealth;
         }
-
-        Debug.Log($"몬스터 최대 체력 감소! 현재 최대 체력: {maxHealth}");
     }
 
     private void Update()

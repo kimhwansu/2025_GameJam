@@ -229,6 +229,12 @@ public class CheckoutManager : Singleton<CheckoutManager>
     // 결과 처리 (성공/실패 - 금액 추가/감소)
     public void FinishCheckout(bool isSuccess)
     {
+        // 결제 버튼 비활성화 (다음 아이템 생성 전까지)
+        if (CheckoutUI.Instance != null)
+        {
+            CheckoutUI.Instance.SetCheckoutButtonInteractable(false);
+        }
+        
         // 결과 문구 출력 (성공/실패)
         checkoutUi.SetResult(isSuccess);
         

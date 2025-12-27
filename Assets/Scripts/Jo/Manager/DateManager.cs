@@ -15,10 +15,6 @@ public class DateManager : Singleton<DateManager>
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI dateText; // 일차 표시용 Text (예: "1일차/D-6")
     
-    [Header("Opening UI")]
-    [SerializeField] private GameObject openingUIObject; // 오프닝 UI 오브젝트
-    [SerializeField] private Button openingOKButton; // 오프닝 OK 버튼
-    
     private int currentDay = 1; // 현재 일차 (1일차부터 시작)
     private int currentDayCustomerCount = 0; // 현재 일차에서 처리한 손님 수
     private bool isGameStarted = false; // 게임 시작 여부
@@ -32,34 +28,16 @@ public class DateManager : Singleton<DateManager>
         // 초기 일차 텍스트 설정
         UpdateDateText();
         
-        // 오프닝 UI 설정
-        if (openingOKButton != null)
-        {
-            openingOKButton.onClick.AddListener(OnOpeningOKClicked);
-        }
-        
-        // 오프닝 UI 활성화 (게임 시작 전)
-        if (openingUIObject != null)
-        {
-            openingUIObject.SetActive(true);
-        }
-        
         // 게임 시작 전에는 시간이 흐르지 않음
         isGameStarted = false;
     }
     
-    // 오프닝 OK 버튼 클릭 시 호출
-    private void OnOpeningOKClicked()
+    // 게임 시작 (OpeningManager에서 호출)
+    public void StartGame()
     {
         if (!isGameStarted)
         {
             isGameStarted = true;
-            
-            // 오프닝 UI 비활성화
-            if (openingUIObject != null)
-            {
-                openingUIObject.SetActive(false);
-            }
             
             Debug.Log("게임 시작!");
             

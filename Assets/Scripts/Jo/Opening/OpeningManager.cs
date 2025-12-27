@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// 오프닝 연출: 패널들이 순차적으로 페이드 아웃 후 비활성화
+/// 오프닝 연출: 패널들이 순차적으로 페이드 아웃 후 튜토리얼 표시
 /// </summary>
 public class OpeningManager : MonoBehaviour
 {
@@ -17,8 +17,25 @@ public class OpeningManager : MonoBehaviour
     [SerializeField] private float secondPanelDelay = 3f;    // 두 번째 패널 페이드 시작 전 대기 시간
     [SerializeField] private float secondPanelFade = 1f;     // 두 번째 패널 페이드 아웃 시간
     
+    [Header("Tutorials")]
+    [SerializeField] private GameObject firstTutorial;  // 첫 번째 튜토리얼
+    [SerializeField] private GameObject secondTutorial;  // 두 번째 튜토리얼
+    [SerializeField] private Button firstTutorialNextButton;  // 첫 번째 튜토리얼의 "다음" 버튼
+    [SerializeField] private Button secondTutorialStartButton; // 두 번째 튜토리얼의 "시작" 버튼
+    
     private void Start()
     {
+
+            firstTutorial.SetActive(true);
+            secondTutorial.SetActive(true);
+        
+        // 버튼 이벤트 연결
+        if (firstTutorialNextButton != null)
+            firstTutorialNextButton.onClick.AddListener(OnFirstTutorialNext);
+        
+        if (secondTutorialStartButton != null)
+            secondTutorialStartButton.onClick.AddListener(OnSecondTutorialStart);
+        
         PlayOpening();
     }
     
@@ -56,7 +73,7 @@ public class OpeningManager : MonoBehaviour
             seq.Append(secondPanel.DOFade(0f, secondPanelFade));
         }
         
-        // 완료 후 패널 둘 다 비활성화
+        // 완료 후 패널 둘 다 비활성화하고 튜토리얼 활성화
         seq.OnComplete(() =>
         {
             if (firstPanel != null)
@@ -64,7 +81,29 @@ public class OpeningManager : MonoBehaviour
             
             if (secondPanel != null)
                 secondPanel.gameObject.SetActive(false);
+            
         });
+    }
+    
+    // 첫 번째 튜토리얼의 "다음" 버튼 클릭
+    private void OnFirstTutorialNext()
+    {
+        if (firstTutorial != null)
+            firstTutorial.SetActive(false);
+    }
+    
+    // 두 번째 튜토리얼의 "시작" 버튼 클릭
+    private void OnSecondTutorialStart()
+    {
+        // DateManager의 게임 시작 메서드 호출
+        if (DateManager.Instance != null)
+        {
+            DateManager.Instance.StartGame();
+        }
+        
+        // 두 번째 튜토리얼 비활성화
+        if (secondTutorial != null)
+            secondTutorial.SetActive(false);
     }
 }
 

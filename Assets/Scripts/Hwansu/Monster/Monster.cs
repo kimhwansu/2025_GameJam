@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 
 public class Monster : MonoBehaviour
 {
@@ -14,18 +15,31 @@ public class Monster : MonoBehaviour
     [Header("사망 시 효과")]
     [SerializeField] private int goldReward = 50;
 
+    [Header("깜빡임 효과")]
+    [SerializeField] private float blinkInterval = 0.6f; // 깜빡이는 간격
+    [SerializeField] private float blinkDuration = 0.1f; // 빨강색 유지 시간
+
     public event Action OnMonsterDeath;
 
     private Transform playerTransform;
     private bool isWaiting = false;
     private Vector2 waitPosition;
     private MonsterSpawner spawner;
-    private int initialMaxHealth; // 초기 최대 체력 저장
+    private int initialMaxHealth;
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor = Color.white;
 
     public void Initialize(MonsterSpawner monsterSpawner)
     {
         spawner = monsterSpawner;
         initialMaxHealth = maxHealth;
+
+        // SpriteRenderer 가져오기
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = originalColor;
+        }
 
         // 모든 StatBar의 MAX 카운트 합산
         StatBar[] statBars = UnityEngine.Object.FindObjectsByType<StatBar>(FindObjectsSortMode.None);
@@ -45,6 +59,9 @@ public class Monster : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
             playerTransform = player.transform;
+
+        // 깜빡임 코루틴 시작
+        StartCoroutine(BlinkRoutine());
     }
 
     private void OnDestroy()
@@ -57,6 +74,30 @@ public class Monster : MonoBehaviour
             if (statBar != null)
             {
                 statBar.OnMaxReached -= OnStatMaxReached;
+            }
+        }
+    }
+
+    private IEnumerator BlinkRoutine()
+    {
+        while (true)
+        {
+            // 대기
+            yield return new WaitForSeconds(blinkInterval);
+
+            // 빨강색으로 변경
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = Color.red;
+            }
+
+            // 짧은 시간 대기
+            yield return new WaitForSeconds(blinkDuration);
+
+            // 원래 색상으로 복구
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.color = originalColor;
             }
         }
     }

@@ -488,7 +488,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2224.8325, y: 65.41443}
+  m_AnchoredPosition: {x: -2224.8325, y: 130.41437}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &94969216
@@ -857,16 +857,16 @@ RectTransform:
   - {fileID: 2045000840}
   - {fileID: 912548345}
   - {fileID: 73509917}
+  - {fileID: 1704102601}
   - {fileID: 1887334576}
   - {fileID: 1262268560}
   - {fileID: 662992857}
-  - {fileID: 1704102601}
   m_Father: {fileID: 1680420499}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00018310547, y: 16.411804}
-  m_SizeDelta: {x: 0, y: 930}
+  m_AnchoredPosition: {x: -0.00018310547, y: 0.000015258789}
+  m_SizeDelta: {x: 0, y: 1050}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &228273445
 GameObject:
@@ -1924,8 +1924,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1117115894}
   m_HandleRect: {fileID: 1117115893}
   m_Direction: 2
-  m_Value: 0.975865
-  m_Size: 0.26881722
+  m_Value: 1
+  m_Size: 0.23809524
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2495,6 +2495,7 @@ GameObject:
   - component: {fileID: 602450368}
   - component: {fileID: 602450367}
   - component: {fileID: 602450366}
+  - component: {fileID: 602450369}
   m_Layer: 5
   m_Name: BuyBut
   m_TagString: Untagged
@@ -2604,6 +2605,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 602450363}
   m_CullTransparentMesh: 1
+--- !u!114 &602450369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602450363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c227bc03a514c4ea0609e9b82879c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 1
+  purchaseButton: {fileID: 602450366}
+  purchaseButtonText: {fileID: 303705324}
+  priceButton: {fileID: 978987613}
+  priceButtonText: {fileID: 439120224}
 --- !u!1 &605834649
 GameObject:
   m_ObjectHideFlags: 0
@@ -2962,7 +2980,7 @@ GameObject:
   m_Component:
   - component: {fileID: 662992857}
   m_Layer: 5
-  m_Name: 3.BG
+  m_Name: 3.Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2988,7 +3006,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2224.8325, y: -397.1543}
+  m_AnchoredPosition: {x: -2224.8325, y: -332.15448}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &679093066
@@ -3140,6 +3158,7 @@ GameObject:
   - component: {fileID: 693440213}
   - component: {fileID: 693440212}
   - component: {fileID: 693440211}
+  - component: {fileID: 693440214}
   m_Layer: 5
   m_Name: BuyBut
   m_TagString: Untagged
@@ -3249,6 +3268,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 693440208}
   m_CullTransparentMesh: 1
+--- !u!114 &693440214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693440208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c227bc03a514c4ea0609e9b82879c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 2
+  purchaseButton: {fileID: 693440211}
+  purchaseButtonText: {fileID: 1728951523}
+  priceButton: {fileID: 247577500}
+  priceButtonText: {fileID: 1076101968}
 --- !u!1 &907281904
 GameObject:
   m_ObjectHideFlags: 0
@@ -3422,7 +3458,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2224.8325, y: 180.41455}
+  m_AnchoredPosition: {x: -2224.8325, y: 245.41473}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &976255401
@@ -4766,7 +4802,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1262268560}
   m_Layer: 5
-  m_Name: 3.Cloth
+  m_Name: 3.BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4792,7 +4828,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2224.8325, y: -282.1538}
+  m_AnchoredPosition: {x: -2224.8325, y: -217.15363}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1305755748
@@ -4831,7 +4867,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2224.8325, y: 399.99985}
+  m_AnchoredPosition: {x: -2224.8325, y: 464.99988}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1309942339
@@ -5908,6 +5944,7 @@ GameObject:
   - component: {fileID: 1588426333}
   - component: {fileID: 1588426332}
   - component: {fileID: 1588426331}
+  - component: {fileID: 1588426334}
   m_Layer: 5
   m_Name: BuyBut
   m_TagString: Untagged
@@ -6017,6 +6054,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1588426328}
   m_CullTransparentMesh: 1
+--- !u!114 &1588426334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588426328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c227bc03a514c4ea0609e9b82879c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 3
+  purchaseButton: {fileID: 1588426331}
+  purchaseButtonText: {fileID: 1067693466}
+  priceButton: {fileID: 94969219}
+  priceButtonText: {fileID: 2119591138}
 --- !u!1 &1595071751
 GameObject:
   m_ObjectHideFlags: 0
@@ -6477,7 +6531,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2224.8325, y: 515}
+  m_AnchoredPosition: {x: -2224.8325, y: 580}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1659855969
@@ -7066,7 +7120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1704102601}
   m_Layer: 5
-  m_Name: '3.Effect '
+  m_Name: '2.Effect '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7092,7 +7146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2224.8325, y: -49.58545}
+  m_AnchoredPosition: {x: -2224.8325, y: 15.414612}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1704811595
@@ -7716,6 +7770,7 @@ GameObject:
   - component: {fileID: 1731018482}
   - component: {fileID: 1731018481}
   - component: {fileID: 1731018480}
+  - component: {fileID: 1731018483}
   m_Layer: 5
   m_Name: BuyBut
   m_TagString: Untagged
@@ -7825,6 +7880,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1731018477}
   m_CullTransparentMesh: 1
+--- !u!114 &1731018483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731018477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c227bc03a514c4ea0609e9b82879c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 1
+  purchaseButton: {fileID: 1731018480}
+  purchaseButtonText: {fileID: 1245497806}
+  priceButton: {fileID: 1309942342}
+  priceButtonText: {fileID: 1212532363}
 --- !u!1 &1757359109
 GameObject:
   m_ObjectHideFlags: 0
@@ -8255,6 +8327,7 @@ GameObject:
   - component: {fileID: 1852781175}
   - component: {fileID: 1852781174}
   - component: {fileID: 1852781173}
+  - component: {fileID: 1852781176}
   m_Layer: 5
   m_Name: BuyBut
   m_TagString: Untagged
@@ -8364,6 +8437,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1852781170}
   m_CullTransparentMesh: 1
+--- !u!114 &1852781176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852781170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c227bc03a514c4ea0609e9b82879c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 3
+  purchaseButton: {fileID: 1852781173}
+  purchaseButtonText: {fileID: 1757359111}
+  priceButton: {fileID: 1630582667}
+  priceButtonText: {fileID: 1840335831}
 --- !u!1 &1871413138
 GameObject:
   m_ObjectHideFlags: 0
@@ -8511,7 +8601,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1887334576}
   m_Layer: 5
-  m_Name: 2.Effect
+  m_Name: 3.Cloth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8537,7 +8627,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2224.8325, y: -167.15381}
+  m_AnchoredPosition: {x: -2224.8325, y: -102.15387}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1916309948
@@ -8552,7 +8642,7 @@ GameObject:
   - component: {fileID: 1916309953}
   - component: {fileID: 1916309952}
   - component: {fileID: 1916309951}
-  - component: {fileID: 1916309950}
+  - component: {fileID: 1916309954}
   m_Layer: 5
   m_Name: BuyBut
   m_TagString: Untagged
@@ -8580,21 +8670,6 @@ RectTransform:
   m_AnchoredPosition: {x: 810, y: -362}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1916309950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1916309948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e26d6dc7074ac0c43933b9da52131540, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  upgradeButton: {fileID: 1916309951}
-  statType: 1
-  statBar: {fileID: 1595071753}
 --- !u!114 &1916309951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8677,6 +8752,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916309948}
   m_CullTransparentMesh: 1
+--- !u!114 &1916309954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916309948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c227bc03a514c4ea0609e9b82879c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 3
+  purchaseButton: {fileID: 1916309951}
+  purchaseButtonText: {fileID: 371462470}
+  priceButton: {fileID: 2107912273}
+  priceButtonText: {fileID: 990609435}
 --- !u!1 &1927012060
 GameObject:
   m_ObjectHideFlags: 0
@@ -8689,6 +8781,7 @@ GameObject:
   - component: {fileID: 1927012065}
   - component: {fileID: 1927012064}
   - component: {fileID: 1927012063}
+  - component: {fileID: 1927012066}
   m_Layer: 5
   m_Name: BuyBut
   m_TagString: Untagged
@@ -8798,6 +8891,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1927012060}
   m_CullTransparentMesh: 1
+--- !u!114 &1927012066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927012060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c227bc03a514c4ea0609e9b82879c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 2
+  purchaseButton: {fileID: 1927012063}
+  purchaseButtonText: {fileID: 1871413140}
+  priceButton: {fileID: 44558804}
+  priceButtonText: {fileID: 2108402634}
 --- !u!1 &1961415714
 GameObject:
   m_ObjectHideFlags: 0
@@ -8947,6 +9057,7 @@ GameObject:
   - component: {fileID: 1979699640}
   - component: {fileID: 1979699639}
   - component: {fileID: 1979699638}
+  - component: {fileID: 1979699641}
   m_Layer: 5
   m_Name: BuyBut
   m_TagString: Untagged
@@ -9056,6 +9167,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1979699635}
   m_CullTransparentMesh: 1
+--- !u!114 &1979699641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979699635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c227bc03a514c4ea0609e9b82879c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 1
+  purchaseButton: {fileID: 1979699638}
+  purchaseButtonText: {fileID: 1438853143}
+  priceButton: {fileID: 18568149}
+  priceButtonText: {fileID: 1430105687}
 --- !u!1 &2045000839
 GameObject:
   m_ObjectHideFlags: 0
@@ -9092,7 +9220,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2224.8325, y: 284.9998}
+  m_AnchoredPosition: {x: -2224.8325, y: 349.99973}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2063218082
@@ -9349,6 +9477,7 @@ GameObject:
   - component: {fileID: 2101932788}
   - component: {fileID: 2101932787}
   - component: {fileID: 2101932786}
+  - component: {fileID: 2101932789}
   m_Layer: 5
   m_Name: BuyBut
   m_TagString: Untagged
@@ -9458,6 +9587,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2101932783}
   m_CullTransparentMesh: 1
+--- !u!114 &2101932789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101932783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c227bc03a514c4ea0609e9b82879c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 2
+  purchaseButton: {fileID: 2101932786}
+  purchaseButtonText: {fileID: 1961415716}
+  priceButton: {fileID: 1466506694}
+  priceButtonText: {fileID: 1679646029}
 --- !u!1 &2107912270
 GameObject:
   m_ObjectHideFlags: 0

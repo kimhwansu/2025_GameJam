@@ -36,14 +36,11 @@ public class CharacterSkinManager : MonoBehaviour
         if (skeletonAnimation == null) return;
 
         var skeletonData = skeletonAnimation.Skeleton.Data;
-        Debug.Log("=== 사용 가능한 스킨 목록 ===");
 
         foreach (var skin in skeletonData.Skins)
         {
-            Debug.Log($"스킨 이름: '{skin.Name}'");
-        }
 
-        Debug.Log("========================");
+        }
     }
 
     // 옷 번호로 스킨 변경
@@ -51,7 +48,6 @@ public class CharacterSkinManager : MonoBehaviour
     {
         if (clothNumber < 1 || clothNumber > clothSkins.Length)
         {
-            Debug.LogWarning($"잘못된 옷 번호: {clothNumber}");
             return;
         }
 
@@ -59,7 +55,6 @@ public class CharacterSkinManager : MonoBehaviour
         ApplySkin(skinName);
         currentClothSkin = skinName;
 
-        Debug.Log($"스킨 변경: {skinName}");
     }
 
     // 스킨 이름으로 직접 변경
@@ -67,7 +62,6 @@ public class CharacterSkinManager : MonoBehaviour
     {
         if (skeletonAnimation == null)
         {
-            Debug.LogError("SkeletonAnimation이 할당되지 않았습니다!");
             return;
         }
 
@@ -78,7 +72,6 @@ public class CharacterSkinManager : MonoBehaviour
         var skin = skeletonData.FindSkin(skinName);
         if (skin == null)
         {
-            Debug.LogError($"스킨을 찾을 수 없습니다: {skinName}");
             return;
         }
 

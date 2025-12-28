@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
@@ -10,36 +10,39 @@ public class StatBar : MonoBehaviour
 
     private int currentValue = 0;
     private int maxValue = 100;
-    private int maxCount = 0; // MAX µµ´Ş È½¼ö
+    private bool hasReachedMax = false; // âœ… MAX ë„ë‹¬ ì—¬ë¶€ (í•œ ë²ˆë§Œ ì¹´ìš´íŒ…)
 
-    // MAX µµ´Ş ½Ã ¹ß»ıÇÏ´Â ÀÌº¥Æ®
+    // MAX ë„ë‹¬ ì‹œ ë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸
     public event Action OnMaxReached;
 
     public void Initialize(int max)
     {
         maxValue = max;
         currentValue = 0;
-        maxCount = 0;
+        hasReachedMax = false;
         UpdateBar();
+        Debug.Log($"[StatBar] Initialize - maxValue: {maxValue}");
     }
 
     public void Increase(int amount = 1)
     {
-        bool wasMax = (currentValue >= maxValue);
+        // ì´ë¯¸ MAX ë„ë‹¬í–ˆìœ¼ë©´ ë” ì´ìƒ ì¦ê°€í•˜ì§€ ì•ŠìŒ
+        if (hasReachedMax)
+        {
+            Debug.Log("[StatBar] ì´ë¯¸ MAX ë„ë‹¬ ì™„ë£Œ");
+            return;
+        }
 
         currentValue += amount;
 
-        // MAX µµ´Ş ¶Ç´Â ÃÊ°ú Ã³¸®
+        // MAX ë„ë‹¬ ì²˜ë¦¬
         if (currentValue >= maxValue)
         {
             currentValue = maxValue;
+            hasReachedMax = true; // âœ… MAX ë„ë‹¬ í”Œë˜ê·¸ ì„¤ì •
 
-            // ÀÌÀü¿¡ MAX°¡ ¾Æ´Ï¾ú´Âµ¥ Áö±İ MAX°¡ µÈ °æ¿ì
-            if (!wasMax)
-            {
-                maxCount++;
-                OnMaxReached?.Invoke();
-            }
+            Debug.Log($"[StatBar] MAX ë„ë‹¬! (í•œ ë²ˆë§Œ ì¹´ìš´íŒ…ë¨)");
+            OnMaxReached?.Invoke();
         }
 
         UpdateBar();
@@ -47,15 +50,19 @@ public class StatBar : MonoBehaviour
 
     private void UpdateBar()
     {
-        fillImage.fillAmount = (float)currentValue / maxValue;
+        if (fillImage != null)
+            fillImage.fillAmount = (float)currentValue / maxValue;
+
+        if (gaugeText == null)
+            return;
+
         if (currentValue >= maxValue)
         {
-            gaugeText.gameObject.SetActive(true);
             gaugeText.text = "MAX";
         }
         else
         {
-            gaugeText.gameObject.SetActive(false);
+            gaugeText.text = $"Lv.UP";
         }
     }
 
@@ -64,16 +71,23 @@ public class StatBar : MonoBehaviour
         return currentValue;
     }
 
+    // âœ… MAX ë„ë‹¬ ì—¬ë¶€ ë°˜í™˜ (AchievementCheckerì—ì„œ ì‚¬ìš©)
     public int GetMaxCount()
     {
-        return maxCount;
+        return hasReachedMax ? 1 : 0;
     }
 
-    // MAX »óÅÂ ÃÊ±âÈ­ (°ÔÀÌÁö´Â À¯ÁöÇÏµÇ MAX »óÅÂ¸¸ ÇØÁ¦)
+    // ì™„ì „ ì´ˆê¸°í™” (ê²Œì„ ì¬ì‹œì‘ ì‹œ)
     public void ResetMax()
     {
-        // ÇÊ¿ä½Ã »ç¿ë: °ÔÀÌÁö¸¦ 0À¸·Î ¸®¼Â
         currentValue = 0;
+        hasReachedMax = false;
         UpdateBar();
+        Debug.Log("[StatBar] ì™„ì „ ë¦¬ì…‹ ì™„ë£Œ");
+    }
+
+    public bool IsMax()
+    {
+        return hasReachedMax;
     }
 }

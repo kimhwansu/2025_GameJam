@@ -51,7 +51,7 @@ public class UpgradeButtonUI : MonoBehaviour
         }
         else
         {
-            buttonText.text = "Upgrade";
+            buttonText.text = "Lv.UP";
             upgradeButton.interactable = true;
         }
     }

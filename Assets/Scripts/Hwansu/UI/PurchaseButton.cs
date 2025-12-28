@@ -74,6 +74,7 @@ public class PurchaseButton : MonoBehaviour
         {
             isPurchased = true;
             totalPurchaseCount++; // 구매 카운트 증가
+
             UpdateUI();
             OnItemPurchased();
 

@@ -6,72 +6,67 @@ using System.Collections.Generic;
 public class AchievementChecker : Singleton<AchievementChecker>
 {
     [Header("StatBar References")]
-    [SerializeField] private List<StatBar> statBars = new List<StatBar>(); // 여러 StatBar를 추가 가능
+    [SerializeField] private List<StatBar> statBars = new List<StatBar>();
 
     [Header("Ending UI References")]
-    [SerializeField] private GameObject endingCanvas; // 엔딩 전용 Canvas (있다면)
-    [SerializeField] private GameObject successEndingImage; // 성공 엔딩 이미지 (18개 달성)
-    [SerializeField] private GameObject failEndingImage;    // 실패 엔딩 이미지 (18개 미달)
+    [SerializeField] private GameObject endingCanvas;
+    [SerializeField] private GameObject successEndingImage;
+    [SerializeField] private GameObject failEndingImage;
 
     [Header("Ending Buttons - Fail")]
-    [SerializeField] private Button failReturnToTitleButton; // 실패: 타이틀로 돌아가기 버튼
-    [SerializeField] private Button failQuitGameButton;       // 실패: 게임 종료 버튼
+    [SerializeField] private Button failReturnToTitleButton;
+    [SerializeField] private Button failQuitGameButton;
 
     [Header("Ending Buttons - Success")]
-    [SerializeField] private Button successQuitGameButton;       // 성공: 게임 종료 버튼
+    [SerializeField] private Button successQuitGameButton;
 
     [Header("Scene Settings")]
-    [SerializeField] private string titleSceneName = "Title"; // 타이틀 씬 이름
+    [SerializeField] private string titleSceneName = "TitleScene";
 
     [Header("Settings")]
-    [SerializeField] private int targetCount = 18; // 목표 카운트
+    [SerializeField] private int targetCount = 18;
 
-    private bool isChecked = false; // 한 번만 체크하도록
+    private bool isChecked = false;
 
     void Start()
     {
-        // 실패 엔딩 버튼 이벤트 등록
         if (failReturnToTitleButton != null)
         {
             failReturnToTitleButton.onClick.AddListener(OnReturnToTitleClicked);
-            Debug.Log("실패: 타이틀로 돌아가기 버튼 이벤트 등록");
         }
 
         if (failQuitGameButton != null)
         {
             failQuitGameButton.onClick.AddListener(OnQuitGameClicked);
-            Debug.Log("실패: 게임 종료 버튼 이벤트 등록");
         }
 
         if (successQuitGameButton != null)
         {
             successQuitGameButton.onClick.AddListener(OnQuitGameClicked);
-            Debug.Log("성공: 게임 종료 버튼 이벤트 등록");
         }
 
         // UI 초기 상태 설정
         if (endingCanvas != null)
         {
             endingCanvas.SetActive(false);
-            Debug.Log("AchievementChecker: 엔딩 Canvas 초기 비활성화");
         }
 
         if (successEndingImage != null)
         {
             successEndingImage.SetActive(false);
-            Debug.Log("AchievementChecker: 성공 엔딩 이미지 초기 비활성화");
         }
 
         if (failEndingImage != null)
         {
             failEndingImage.SetActive(false);
-            Debug.Log("AchievementChecker: 실패 엔딩 이미지 초기 비활성화");
         }
+
+        // ✅ 초기 상태 디버깅
+        DebugUIState("Start");
     }
 
     void OnDestroy()
     {
-        // 실패 엔딩 버튼 이벤트 해제
         if (failReturnToTitleButton != null)
         {
             failReturnToTitleButton.onClick.RemoveListener(OnReturnToTitleClicked);
@@ -81,39 +76,31 @@ public class AchievementChecker : Singleton<AchievementChecker>
         {
             failQuitGameButton.onClick.RemoveListener(OnQuitGameClicked);
         }
+
         if (successQuitGameButton != null)
         {
             successQuitGameButton.onClick.RemoveListener(OnQuitGameClicked);
         }
     }
 
-    // 타이틀로 돌아가기 버튼 클릭
     private void OnReturnToTitleClicked()
     {
         Debug.Log("타이틀로 돌아가기 버튼 클릭!");
-
-        // 필요한 경우 데이터 초기화
         ResetChecker();
-
-        // 타이틀 씬 로드
         SceneManager.LoadScene(titleSceneName);
     }
 
-    // 게임 종료 버튼 클릭
     private void OnQuitGameClicked()
     {
         Debug.Log("게임 종료 버튼 클릭!");
 
 #if UNITY_EDITOR
-        // 에디터에서는 플레이 모드 종료
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-            // 빌드된 게임에서는 애플리케이션 종료
-            Application.Quit();
+        Application.Quit();
 #endif
     }
 
-    // 7일차 종료 시 엔딩 체크 (DateManager에서 호출)
     public void CheckEnding()
     {
         if (isChecked)
@@ -134,16 +121,16 @@ public class AchievementChecker : Singleton<AchievementChecker>
             ShowFailEnding();
         }
 
-        isChecked = true; // ✅ 여기서만 잠금
+        isChecked = true;
+
+        // ✅ 엔딩 표시 후 상태 디버깅
+        DebugUIState("After CheckEnding");
     }
-
-
 
     private int GetTotalCount()
     {
         int statBarCount = 0;
 
-        // 모든 StatBar의 maxCount 합산
         foreach (var statBar in statBars)
         {
             if (statBar != null)
@@ -152,13 +139,8 @@ public class AchievementChecker : Singleton<AchievementChecker>
                 statBarCount += count;
                 Debug.Log($"StatBar MAX 카운트: {count}");
             }
-            else
-            {
-                Debug.LogWarning("StatBar가 null입니다!");
-            }
         }
 
-        // PurchaseButton의 구매 횟수
         int purchaseCount = PurchaseButton.GetTotalPurchaseCount();
 
         Debug.Log($"=== 카운트 집계 ===");
@@ -173,29 +155,57 @@ public class AchievementChecker : Singleton<AchievementChecker>
     {
         Debug.Log("★★★ 성공 엔딩! 18개 달성! ★★★");
 
-        if (successEndingImage != null)
+        // ✅ 1단계: Canvas를 반드시 먼저 활성화
+        if (endingCanvas != null)
         {
-            // 부모 오브젝트들도 모두 활성화 (혹시 모를 경우 대비)
-            Transform current = successEndingImage.transform;
-            while (current != null)
-            {
-                current.gameObject.SetActive(true);
-                current = current.parent;
-                if (current != null && current.GetComponent<Canvas>() != null)
-                    break; // Canvas까지만 활성화
-            }
-
-            successEndingImage.SetActive(true);
-            Debug.Log("성공 엔딩 이미지 활성화 완료!");
+            endingCanvas.SetActive(true);
+            Debug.Log($"[성공] endingCanvas 활성화: {endingCanvas.activeSelf}");
         }
         else
         {
-            Debug.LogError("성공 엔딩 이미지가 null입니다! Inspector에서 설정해주세요.");
+            Debug.LogWarning("[성공] endingCanvas가 설정되지 않았습니다. 이미지가 Canvas 직속 자식인 경우 문제없습니다.");
         }
 
+        // ✅ 2단계: 실패 이미지 비활성화
         if (failEndingImage != null)
         {
             failEndingImage.SetActive(false);
+            Debug.Log($"[성공] failEndingImage 비활성화");
+        }
+
+        // ✅ 3단계: 성공 이미지 활성화
+        if (successEndingImage != null)
+        {
+            successEndingImage.SetActive(true);
+            Debug.Log($"[성공] successEndingImage 활성화!");
+            Debug.Log($"[성공] successEndingImage.activeSelf: {successEndingImage.activeSelf}");
+            Debug.Log($"[성공] successEndingImage.activeInHierarchy: {successEndingImage.activeInHierarchy}");
+
+            // Canvas 확인
+            Canvas canvas = successEndingImage.GetComponentInParent<Canvas>();
+            if (canvas != null)
+            {
+                Debug.Log($"[성공] 부모 Canvas 발견: {canvas.name}, 활성화 상태: {canvas.gameObject.activeSelf}");
+            }
+
+            // ✅ Image 컴포넌트 체크
+            Image img = successEndingImage.GetComponent<Image>();
+            if (img != null)
+            {
+                Debug.Log($"[성공] Image - enabled: {img.enabled}, sprite: {(img.sprite != null ? img.sprite.name : "null")}");
+                if (img.sprite == null)
+                {
+                    Debug.LogError("[성공] Image에 Sprite가 할당되지 않았습니다!");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("[성공] Image 컴포넌트가 없습니다!");
+            }
+        }
+        else
+        {
+            Debug.LogError("[성공] successEndingImage가 null입니다! Inspector에서 설정해주세요.");
         }
     }
 
@@ -203,45 +213,91 @@ public class AchievementChecker : Singleton<AchievementChecker>
     {
         Debug.Log("실패 엔딩... 18개 미달성");
 
-        if (successEndingImage != null)
+        // ✅ 1단계: Canvas를 반드시 먼저 활성화
+        if (endingCanvas != null)
         {
-            successEndingImage.SetActive(false);
-        }
-
-        if (failEndingImage != null)
-        {
-            // 부모 오브젝트들도 모두 활성화 (혹시 모를 경우 대비)
-            Transform current = failEndingImage.transform;
-            while (current != null)
-            {
-                current.gameObject.SetActive(true);
-                current = current.parent;
-                if (current != null && current.GetComponent<Canvas>() != null)
-                    break; // Canvas까지만 활성화
-            }
-
-            failEndingImage.SetActive(true);
-            Debug.Log("실패 엔딩 이미지 활성화 완료!");
+            endingCanvas.SetActive(true);
+            Debug.Log($"[실패] endingCanvas 활성화: {endingCanvas.activeSelf}");
         }
         else
         {
-            Debug.LogError("실패 엔딩 이미지가 null입니다! Inspector에서 설정해주세요.");
+            Debug.LogWarning("[실패] endingCanvas가 설정되지 않았습니다. 이미지가 Canvas 직속 자식인 경우 문제없습니다.");
+        }
+
+        // ✅ 2단계: 성공 이미지 비활성화
+        if (successEndingImage != null)
+        {
+            successEndingImage.SetActive(false);
+            Debug.Log($"[실패] successEndingImage 비활성화");
+        }
+
+        // ✅ 3단계: 실패 이미지 활성화
+        if (failEndingImage != null)
+        {
+            failEndingImage.SetActive(true);
+            Debug.Log($"[실패] failEndingImage 활성화!");
+            Debug.Log($"[실패] failEndingImage.activeSelf: {failEndingImage.activeSelf}");
+            Debug.Log($"[실패] failEndingImage.activeInHierarchy: {failEndingImage.activeInHierarchy}");
+
+            // Canvas 확인
+            Canvas canvas = failEndingImage.GetComponentInParent<Canvas>();
+            if (canvas != null)
+            {
+                Debug.Log($"[실패] 부모 Canvas 발견: {canvas.name}, 활성화 상태: {canvas.gameObject.activeSelf}");
+            }
+
+            // ✅ Image 컴포넌트 체크
+            Image img = failEndingImage.GetComponent<Image>();
+            if (img != null)
+            {
+                Debug.Log($"[실패] Image - enabled: {img.enabled}, sprite: {(img.sprite != null ? img.sprite.name : "null")}");
+                if (img.sprite == null)
+                {
+                    Debug.LogError("[실패] Image에 Sprite가 할당되지 않았습니다!");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("[실패] Image 컴포넌트가 없습니다!");
+            }
+        }
+        else
+        {
+            Debug.LogError("[실패] failEndingImage가 null입니다! Inspector에서 설정해주세요.");
         }
     }
 
-    // 현재 총 카운트 확인용 (디버그/UI 표시용)
+    // ✅ UI 상태 디버깅 헬퍼 함수
+    private void DebugUIState(string context)
+    {
+        Debug.Log($"=== UI 상태 체크 ({context}) ===");
+
+        if (endingCanvas != null)
+            Debug.Log($"endingCanvas: {endingCanvas.activeSelf}");
+        else
+            Debug.Log("endingCanvas: null");
+
+        if (successEndingImage != null)
+            Debug.Log($"successEndingImage: activeSelf={successEndingImage.activeSelf}, activeInHierarchy={successEndingImage.activeInHierarchy}");
+        else
+            Debug.Log("successEndingImage: null");
+
+        if (failEndingImage != null)
+            Debug.Log($"failEndingImage: activeSelf={failEndingImage.activeSelf}, activeInHierarchy={failEndingImage.activeInHierarchy}");
+        else
+            Debug.Log("failEndingImage: null");
+    }
+
     public int GetCurrentTotalCount()
     {
         return GetTotalCount();
     }
 
-    // 목표까지 남은 카운트
     public int GetRemainingCount()
     {
         return Mathf.Max(0, targetCount - GetTotalCount());
     }
 
-    // 리셋 (재도전 시 사용)
     public void ResetChecker()
     {
         isChecked = false;

@@ -5,7 +5,7 @@ public class GoldManager : MonoBehaviour
 {
     public static GoldManager Instance;
 
-    public int Gold { get; private set; } = 10000000;  //√ ±‚∞ÒµÂ
+    public int Gold { get; private set; } = 10000;  //√ ±‚∞ÒµÂ
 
     public event Action OnGoldChanged;
 

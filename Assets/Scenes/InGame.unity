@@ -891,7 +891,7 @@ MonoBehaviour:
   failQuitGameButton: {fileID: 1500295710}
   successQuitGameButton: {fileID: 941513981}
   titleSceneName: Title
-  targetCount: 17
+  targetCount: 18
 --- !u!4 &42443500
 Transform:
   m_ObjectHideFlags: 0
